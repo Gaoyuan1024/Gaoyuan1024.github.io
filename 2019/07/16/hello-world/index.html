@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="title: 主页Axios自定义请求封装 Axios是Vue创作者尤雨溪推荐的契合Vue框架的http请求，本文以iView UI为例，介绍如何封装Axios自定义请求，并对请求做出统一的处理。  Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any pr">
+<meta name="description" content="Axios自定义请求封装 Axios是Vue创作者尤雨溪推荐的契合Vue框架的http请求，本文以iView UI为例，介绍如何封装Axios自定义请求，并对请求做出统一的处理。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="个人博客">
 <meta property="og:url" content="http://yoursite.com/2019/07/16/hello-world/index.html">
 <meta property="og:site_name" content="个人博客">
-<meta property="og:description" content="title: 主页Axios自定义请求封装 Axios是Vue创作者尤雨溪推荐的契合Vue框架的http请求，本文以iView UI为例，介绍如何封装Axios自定义请求，并对请求做出统一的处理。  Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any pr">
+<meta property="og:description" content="Axios自定义请求封装 Axios是Vue创作者尤雨溪推荐的契合Vue框架的http请求，本文以iView UI为例，介绍如何封装Axios自定义请求，并对请求做出统一的处理。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-07-17T02:02:52.922Z">
+<meta property="og:updated_time" content="2019-07-17T03:14:04.348Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="个人博客">
-<meta name="twitter:description" content="title: 主页Axios自定义请求封装 Axios是Vue创作者尤雨溪推荐的契合Vue框架的http请求，本文以iView UI为例，介绍如何封装Axios自定义请求，并对请求做出统一的处理。  Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any pr">
+<meta name="twitter:description" content="Axios自定义请求封装 Axios是Vue创作者尤雨溪推荐的契合Vue框架的http请求，本文以iView UI为例，介绍如何封装Axios自定义请求，并对请求做出统一的处理。">
 
 
 
@@ -299,24 +299,28 @@
       
 
       
-        <hr>
-<h2 id="title-主页"><a href="#title-主页" class="headerlink" title="title: 主页"></a>title: 主页</h2><h1>Axios自定义请求封装</h1>
+        <h1>Axios自定义请求封装</h1>
 Axios是Vue创作者尤雨溪推荐的契合Vue框架的http请求，本文以iView UI为例，介绍如何封装Axios自定义请求，并对请求做出统一的处理。
 
-<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+<!-- Welcome to [Hexo](https://hexo.io/)! This is your very first post. Check [documentation](https://hexo.io/docs/) for more info. If you get any problems when using Hexo, you can find the answer in [troubleshooting](https://hexo.io/docs/troubleshooting.html) or you can ask me on [GitHub](https://github.com/hexojs/hexo/issues).
 
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
+## Quick Start
+
+### Create a new post
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
 <h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
 <h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
 <h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
+<p>More info: <a href="https://hexo.io/docs/deployment.html">Deployment</a> –&gt;</p>
+-->
       
     </div>
     
@@ -446,7 +450,7 @@ Axios是Vue创作者尤雨溪推荐的契合Vue框架的http请求，本文以iV
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#title-主页"><span class="nav-number">1.</span> <span class="nav-text">title: 主页</span></a></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number"></span> <span class="nav-text">Axios自定义请求封装</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick-Start"><span class="nav-number">1.</span> <span class="nav-text">Quick Start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-a-new-post"><span class="nav-number">1.1.</span> <span class="nav-text">Create a new post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run-server"><span class="nav-number">1.2.</span> <span class="nav-text">Run server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate-static-files"><span class="nav-number">1.3.</span> <span class="nav-text">Generate static files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploy-to-remote-sites"><span class="nav-number">1.4.</span> <span class="nav-text">Deploy to remote sites</span></a></li></ol></li></ol></li></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">1.</span> <span class="nav-text">Axios自定义请求封装</span></a></li></ol></div>
             
 
           </div>
