@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content=",,">
+  <meta name="keywords" content="Javascript,ES6,Array,">
 
 
 
@@ -79,15 +79,18 @@
 
 
 
-<meta name="keywords" content="vue,javascript">
-<meta property="og:type" content="website">
-<meta property="og:title" content="关于">
-<meta property="og:url" content="http://yoursite.com/about/index.html">
+<meta name="description" content="本文主要介绍一些在日常开发过程中的数组方法。">
+<meta name="keywords" content="Javascript,ES6,Array">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数组方法">
+<meta property="og:url" content="http://yoursite.com/2019/07/17/数组方法/index.html">
 <meta property="og:site_name" content="个人博客">
+<meta property="og:description" content="本文主要介绍一些在日常开发过程中的数组方法。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-07-17T09:14:26.860Z">
+<meta property="og:updated_time" content="2019-07-17T09:52:27.276Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="关于">
+<meta name="twitter:title" content="数组方法">
+<meta name="twitter:description" content="本文主要介绍一些在日常开发过程中的数组方法。">
 
 
 
@@ -117,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/about/">
+  <link rel="canonical" href="http://yoursite.com/2019/07/17/数组方法/">
 
 
 
 
 
-  <title>关于 | 个人博客</title>
+  <title>数组方法 | 个人博客</title>
   
 
 
@@ -228,33 +231,209 @@
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/17/数组方法/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="高原">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="个人博客">
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-	<h1 class="post-title" itemprop="name headline">关于</h1>
-
-
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
         
         
+          <h1 class="post-title" itemprop="name headline">数组方法</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-17T09:12:34+08:00">
+                2019-07-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
           
-        
-      </div>
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">Javascript</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+          
+              <div class="post-description">
+                  本文主要介绍一些在日常开发过程中的数组方法。
+              </div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
       
+
+      
+        <ol>
+<li><p>判断B数组是否为A数组的子集(有重复、无序)</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">function subset(A,B)&#123;</span><br><span class="line">  A = A.slice();</span><br><span class="line">    for(var i=0, len=B.length; i&lt;len; i++)&#123;</span><br><span class="line">      if(A.indexOf(B[i]) === -1)&#123;</span><br><span class="line">        return false;</span><br><span class="line">      &#125;else&#123;</span><br><span class="line">        A.splice(A.indexOf(B[i]),1);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  return true;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>删除A数组中与B数组相同的元素(两个数组相减)</p>
+</li>
+</ol>
+<ul>
+<li><p>Es6 filter方法（过滤）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">let arr1 = [1,2,3,4,5,6], arr2 = [2,5,3];</span><br><span class="line">let arr = arr1.filter(el =&gt; !arr2.includes(el));</span><br><span class="line">console.log(arr)  //[1,4,6]</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>forEach方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var arr1 = [&quot;&quot;, &quot;100&quot;, &quot;120&quot;, &quot;125&quot;, &quot;125&quot;, &quot;130&quot;, &quot;130&quot;];</span><br><span class="line">var arr2 = [&quot;&quot;, &quot;120&quot;, &quot;125&quot;, &quot;125&quot;, &quot;130&quot;];</span><br><span class="line">var arr3 = [];</span><br><span class="line">arr1.forEach((a)=&gt;&#123;</span><br><span class="line">    let c = arr2.findIndex(b=&gt;a == b);</span><br><span class="line">    if (c &gt; -1) delete arr2[c];</span><br><span class="line">    else arr3.push(a);</span><br><span class="line">&#125;);</span><br><span class="line">console.log(arr3)  //[&quot;100&quot;, &quot;130&quot;]</span><br></pre></td></tr></table></figure></li>
+</ul>
+
       
     </div>
     
     
     
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div></div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/image/wechat.jpg" alt="高原 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Javascript/" rel="tag"># Javascript</a>
+          
+            <a href="/tags/ES6/" rel="tag"># ES6</a>
+          
+            <a href="/tags/Array/" rel="tag"># Array</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/07/17/Axios封装/" rel="prev" title="Axios自定义请求封装">
+                Axios自定义请求封装 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
   </div>
 
 
@@ -263,10 +442,6 @@
 
 
           
-
-  
-
-
 
         </div>
         
