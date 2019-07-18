@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="个人博客">
 <meta property="og:description" content="本文主要介绍一些在日常开发过程中的数组方法。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-07-17T09:52:27.276Z">
+<meta property="og:updated_time" content="2019-07-18T06:31:35.909Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数组方法">
 <meta name="twitter:description" content="本文主要介绍一些在日常开发过程中的数组方法。">
@@ -201,16 +201,6 @@
         </li>
       
         
-        <li class="menu-item menu-item-categories">
-          <a href="/categories/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
-            
-            分类
-          </a>
-        </li>
-      
-        
         <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
             
@@ -316,6 +306,8 @@
             </span>
           
 
+          
+            
           
 
           
@@ -470,6 +462,13 @@
 
 
           
+
+  
+    <div id="gitalk-container"></div>
+
+  
+
+
 
         </div>
         
@@ -752,6 +751,21 @@
 
 
 
+
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+   <script type="text/javascript">
+        var gitalk = new Gitalk({
+          clientID: '9c8dfe2157a9c6ca738e',
+          clientSecret: '9e2f6e852ddec02088e9a80a4e2ad1b5a6802515',
+          repo: 'Gaoyuan1024.github.io',
+          owner: 'Gaoyuan1024',
+          admin: ['Gaoyuan1024'],
+          id: location.pathname,
+          distractionFreeMode: 'true'
+        })
+        gitalk.render('gitalk-container')           
+       </script>
 
 
   
