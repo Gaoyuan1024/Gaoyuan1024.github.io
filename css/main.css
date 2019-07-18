@@ -1161,11 +1161,6 @@ pre .javascript .function {
   background: transparent;
   border: none;
 }
-.site-nav {
-  width: 100%;
-  top: 54px;
-  z-index: 999;
-}
 @media (max-width: 767px) {
   .site-nav {
     display: none;
@@ -1264,6 +1259,14 @@ pre .javascript .function {
   animation: roll 0.1s infinite linear;
   -webkit-animation: roll 0.1s infinite linear;
   -moz-animation: roll 0.1s infinite linear;
+}
+@media (max-width: 767px) {
+  .site-nav {
+    width: 100%;
+    top: 54px;
+    background: #fff;
+    z-index: 999;
+  }
 }
 .post-body {
   font-family: 'Lato', "PingFang SC", "Microsoft YaHei", sans-serif;
@@ -1999,7 +2002,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #992929;
+  background: #a6a4ff;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2538,6 +2541,14 @@ pre .javascript .function {
 .site-uv::after {
   content: "|";
   padding-left: 10px;
+}
+.gt-header a,
+.gt-comments a,
+.gt-popup a {
+  border-bottom: none;
+}
+.gt-container .gt-popup .gt-action.is--active:before {
+  top: 0.7em;
 }
 .page-archive .archive-page-counter {
   position: relative;
