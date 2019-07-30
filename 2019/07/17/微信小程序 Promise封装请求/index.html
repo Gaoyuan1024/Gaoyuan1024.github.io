@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Javascript,Axios,">
+  <meta name="keywords" content="ES6,Javascript,">
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="Axios 是一个基于 promise 的 HTTP 库，可以用在浏览器和node.js 中，本文以iView UI为例，介绍如何封装Axios自定义请求，并对请求做出统一的处理。">
-<meta name="keywords" content="Javascript,Axios">
+<meta name="description" content="本文主要介绍一些在日常开发过程中的数组方法。">
+<meta name="keywords" content="ES6,Javascript">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Axios自定义请求封装">
-<meta property="og:url" content="http://yoursite.com/2019/07/17/Axios封装/index.html">
+<meta property="og:title" content="微信小程序 Promise封装请求">
+<meta property="og:url" content="http://yoursite.com/2019/07/17/微信小程序 Promise封装请求/index.html">
 <meta property="og:site_name" content="范二先生的博客">
-<meta property="og:description" content="Axios 是一个基于 promise 的 HTTP 库，可以用在浏览器和node.js 中，本文以iView UI为例，介绍如何封装Axios自定义请求，并对请求做出统一的处理。">
+<meta property="og:description" content="本文主要介绍一些在日常开发过程中的数组方法。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-07-30T02:59:48.493Z">
+<meta property="og:updated_time" content="2019-07-30T03:12:51.214Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Axios自定义请求封装">
-<meta name="twitter:description" content="Axios 是一个基于 promise 的 HTTP 库，可以用在浏览器和node.js 中，本文以iView UI为例，介绍如何封装Axios自定义请求，并对请求做出统一的处理。">
+<meta name="twitter:title" content="微信小程序 Promise封装请求">
+<meta name="twitter:description" content="本文主要介绍一些在日常开发过程中的数组方法。">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/07/17/Axios封装/">
+  <link rel="canonical" href="http://yoursite.com/2019/07/17/微信小程序 Promise封装请求/">
 
 
 
 
 
-  <title>Axios自定义请求封装 | 范二先生的博客</title>
+  <title>微信小程序 Promise封装请求 | 范二先生的博客</title>
   
 
 
@@ -243,7 +243,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/17/Axios封装/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/17/微信小程序 Promise封装请求/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="范二先生丶">
@@ -260,7 +260,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Axios自定义请求封装</h1>
+          <h1 class="post-title" itemprop="name headline">微信小程序 Promise封装请求</h1>
         
 
         <div class="post-meta">
@@ -295,8 +295,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Vue/" itemprop="url" rel="index">
-                    <span itemprop="name">Vue</span>
+                  <a href="/categories/Javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">Javascript</span>
                   </a>
                 </span>
 
@@ -319,7 +319,7 @@
 
           
               <div class="post-description">
-                  Axios 是一个基于 promise 的 HTTP 库，可以用在浏览器和node.js 中，本文以iView UI为例，介绍如何封装Axios自定义请求，并对请求做出统一的处理。
+                  本文主要介绍一些在日常开发过程中的数组方法。
               </div>
           
 
@@ -337,17 +337,14 @@
 
       
         <ol>
-<li><p>安装Axios</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install axios --save</span><br></pre></td></tr></table></figure>
+<li><p>在utils目录下创建http.js文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 封装http 请求方法</span><br><span class="line"> */</span><br><span class="line">const apiUrl = &quot;https://easy-mock.com/mock/5d3e927cc41f05276e153aef/example&quot;; // 服务器api地址（我这里是使用easy-mock模拟接口）</span><br><span class="line">const http = (params) =&gt; &#123;</span><br><span class="line">  //返回promise 对象</span><br><span class="line">  return new Promise((resolve, reject) =&gt; &#123;</span><br><span class="line">    wx.request(&#123;</span><br><span class="line">      url: apiUrl + params.url,	// 服务器url+参数中携带的接口具体地址</span><br><span class="line">      data: params.data,	// 请求参数</span><br><span class="line">      header: params.header || &#123;</span><br><span class="line">        &quot;Content-Type&quot;: &quot;application/x-www-form-urlencoded&quot;	// 设置后端需要的常用的格式就好，特殊情况调用的时候单独设置</span><br><span class="line">      &#125;,</span><br><span class="line">      method: params.method || &apos;POST&apos;,//默认为GET,可以不写，如常用请求格式为POST，可以设置POST为默认请求方式</span><br><span class="line">      dataType: params.dataType,//返回的数据格式,默认为JSON，特殊格式可以在调用的时候传入参数</span><br><span class="line">      responseType: params.responseType,//响应的数据类型</span><br><span class="line">      success: function (res) &#123;</span><br><span class="line">        //接口访问正常返回数据</span><br><span class="line">        if (res.statusCode == 200) &#123;</span><br><span class="line">          console.log(res.data)</span><br><span class="line">          resolve(res.data)</span><br><span class="line">          //1. 操作成功返回数据,原则上只针对服务器端返回成功的状态（如本例中为000000）</span><br><span class="line">          // if (params.url == &quot;/order/result&quot; &amp;&amp; res.data.retCode == &quot;800020&quot;) &#123;//支付结果未知      </span><br><span class="line">          //   //需要特殊处理的接口，可以单独列出来返回数据</span><br><span class="line">          //   resolve(res.data)</span><br><span class="line">          // &#125; else &#123;</span><br><span class="line">          //   wx.showToast(&#123;</span><br><span class="line">          //     icon: &quot;none&quot;,</span><br><span class="line">          //     title: res.data.retMsg</span><br><span class="line">          //   &#125;)</span><br><span class="line">          //   console.log(res.data)</span><br><span class="line">          // &#125;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">          //2. 操作不成功返回数据，以toast方式弹出响应信息，如后端未格式化非操作成功异常信息，则可以统一定义异常提示</span><br><span class="line">          var errMsg = res.data.message</span><br><span class="line">          errorToast();</span><br><span class="line">          console.log(res.data)</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;,</span><br><span class="line">      fail: function (e) &#123;</span><br><span class="line">        errorToast();</span><br><span class="line">        reject(e)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line">module.exports = &#123;</span><br><span class="line">  http: http</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>定义axiosBase.js文件</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line">import axios from &quot;axios&quot;;</span><br><span class="line">import store from &apos;../store/store.js&apos;    //引用store.js</span><br><span class="line">import router from &apos;../router&apos;;</span><br><span class="line">import qs from &quot;qs&quot;;</span><br><span class="line">let service;</span><br><span class="line"></span><br><span class="line">//设置默认请求头</span><br><span class="line">if (process.env.NODE_ENV === &quot;production&quot;) &#123;</span><br><span class="line">	service = axios.create(&#123;</span><br><span class="line">	xsrfHeaderName: &quot;&quot;,</span><br><span class="line">	xsrfCookieName: &quot;&quot;,</span><br><span class="line">	timeout: 60000,</span><br><span class="line">&#125;);</span><br><span class="line">&#125; else &#123;</span><br><span class="line">	service = axios.create(&#123;</span><br><span class="line">	timeout: 60000,</span><br><span class="line">	heard:&#123;</span><br><span class="line">		&quot;content-type&quot;: &quot;application/json; charset=utf-8&quot;,</span><br><span class="line">	&#125;</span><br><span class="line">&#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">service.interceptors.request.use(</span><br><span class="line">config =&gt; &#123;</span><br><span class="line">// 在发送请求之前做些什么 设置token 判断有没有token</span><br><span class="line">	if (store.state.token) &#123;</span><br><span class="line">		config.headers.Token = `$&#123;store.state.token&#125;`;</span><br><span class="line">	&#125;else &#123;</span><br><span class="line">		router.push(&quot;/login&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">	return config;</span><br><span class="line">&#125;,</span><br><span class="line">error =&gt; &#123;</span><br><span class="line">	return Promise.reject(error);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">service.interceptors.response.use(</span><br><span class="line">response =&gt; &#123;</span><br><span class="line">	if (response.data.code === 508) &#123;</span><br><span class="line">		router.push(&#123;name: &apos;508&apos;&#125;);</span><br><span class="line">		return false;</span><br><span class="line">	&#125;</span><br><span class="line">	if(response.data.code === 401)&#123;</span><br><span class="line">		router.push(&quot;/authorizationPage&quot;);</span><br><span class="line">		return false;</span><br><span class="line">	&#125;</span><br><span class="line">	return response;</span><br><span class="line">&#125;,</span><br><span class="line">error =&gt; &#123;</span><br><span class="line">	return Promise.reject(error);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">const Http = &#123;</span><br><span class="line">	get(url, params = null) &#123;</span><br><span class="line">		return service(&#123;</span><br><span class="line">			method: &apos;GET&apos;,</span><br><span class="line">			url: url,</span><br><span class="line">			params: params,</span><br><span class="line">		&#125;);</span><br><span class="line">	&#125;,</span><br><span class="line">	post(url, payload = null) &#123;</span><br><span class="line">		return service(&#123;</span><br><span class="line">			method: &quot;POST&quot;,</span><br><span class="line">			url: url,</span><br><span class="line">			data: qs.stringify(payload)</span><br><span class="line">		&#125;);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">export default Http;</span><br></pre></td></tr></table></figure>
+<li><p>创建api.js</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">import &#123; http &#125; from &apos;../utils/http.js&apos;</span><br><span class="line"></span><br><span class="line">var url = &#123;</span><br><span class="line">  userLogin: &quot;/user/login&quot;,</span><br><span class="line">  getUserPhone: &quot;/getData&quot;,</span><br><span class="line">  // ...</span><br><span class="line">  userCardReceive: &quot;/card/receive&quot; </span><br><span class="line">&#125;</span><br><span class="line">module.exports = &#123;</span><br><span class="line">  // userLogin(code) &#123;</span><br><span class="line">  //   return http(&#123;</span><br><span class="line">  //     url: url.userLogin,</span><br><span class="line">  //     data: &#123; code: code &#125;,</span><br><span class="line">  //     header: &#123;</span><br><span class="line">  //       &quot;Content-Type&quot;: &quot;application/x-www-form-urlencoded&quot;</span><br><span class="line">  //     &#125;</span><br><span class="line">  //   &#125;)</span><br><span class="line">  // &#125;,</span><br><span class="line">  getUserPhone(params) &#123;</span><br><span class="line">    return http(&#123;</span><br><span class="line">      url: url.getUserPhone,</span><br><span class="line">      data: params</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;,</span><br><span class="line">  // ...</span><br><span class="line">  userCardReceive() &#123;</span><br><span class="line">    return http(&#123;</span><br><span class="line">      url: url.userCardReceive,</span><br><span class="line">      method: &quot;GET&quot;</span><br><span class="line">     &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>定义Api接口</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">// api 接口封装</span><br><span class="line">import $fetch from &quot;./axiosBase&quot;;</span><br><span class="line">const RESPONSEBASEURLS = &quot;http:/×××.com/Api/&quot;;</span><br><span class="line"></span><br><span class="line">// Post请求</span><br><span class="line">export function postData(payload) &#123;</span><br><span class="line"> 	return $fetch.post(`$&#123;RESPONSEBASEURLS&#125;postData`, payload);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// Get请求</span><br><span class="line">export function getData(params) &#123;</span><br><span class="line"> 	return $fetch.get(`$&#123;RESPONSEBASEURLS&#125;getData`, params);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>页面应用</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">import &#123; postData, getData &#125; from &quot;../../utils/serve&quot;</span><br><span class="line"></span><br><span class="line">async getData()&#123;</span><br><span class="line">	try &#123;</span><br><span class="line">	let result = await getData(&#123;</span><br><span class="line">		参数1：&apos;&apos;,</span><br><span class="line">		参数2：&apos;&apos;,</span><br><span class="line">		...</span><br><span class="line">		&#125;);</span><br><span class="line">	let &#123; data, code&#125; = result.data;</span><br><span class="line">	if(code === 200)&#123;</span><br><span class="line">		// ...成功操作</span><br><span class="line">	&#125;else &#123;</span><br><span class="line">		// ...失败操作</span><br><span class="line">	&#125;</span><br><span class="line">	&#125; catch(err) &#123;</span><br><span class="line">		console.log(err)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+<li><p>页面引用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">const http = require(&apos;../../utils/api.js&apos;) </span><br><span class="line"></span><br><span class="line">Page(&#123;</span><br><span class="line">  data: &#123;&#125;,	 </span><br><span class="line">  onLoad: function (options) &#123;</span><br><span class="line">    http.getUserPhone().then(data =&gt; &#123;</span><br><span class="line">        if (data) &#123;</span><br><span class="line">            //返回结果的处理逻辑</span><br><span class="line">            //  ...</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)  </span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 
 </li>
 </ol>
@@ -395,7 +392,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://yoursite.com/2019/07/17/Axios封装/" title="Axios自定义请求封装">http://yoursite.com/2019/07/17/Axios封装/</a>
+    <a href="http://yoursite.com/2019/07/17/微信小程序 Promise封装请求/" title="微信小程序 Promise封装请求">http://yoursite.com/2019/07/17/微信小程序 Promise封装请求/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -410,9 +407,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Javascript/" rel="tag"># Javascript</a>
+            <a href="/tags/ES6/" rel="tag"># ES6</a>
           
-            <a href="/tags/Axios/" rel="tag"># Axios</a>
+            <a href="/tags/Javascript/" rel="tag"># Javascript</a>
           
         </div>
       
@@ -425,14 +422,18 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2019/07/17/Axios封装/" rel="next" title="Axios自定义请求封装">
+                <i class="fa fa-chevron-left"></i> Axios自定义请求封装
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/07/17/微信小程序 Promise封装请求/" rel="prev" title="微信小程序 Promise封装请求">
-                微信小程序 Promise封装请求 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/07/17/数组方法/" rel="prev" title="数组方法">
+                数组方法 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
