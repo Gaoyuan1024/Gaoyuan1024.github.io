@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Javascript,vue,kindeditor,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="本文主要介绍如何在Vue中使用kindeditor富文本编辑器。">
+<meta name="keywords" content="Javascript,vue,kindeditor">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vue之kindeditor富文本编辑器">
+<meta property="og:url" content="http://yoursite.com/2019/07/17/Vue之kindeditor富文本编辑器/index.html">
+<meta property="og:site_name" content="范二先生的博客">
+<meta property="og:description" content="本文主要介绍如何在Vue中使用kindeditor富文本编辑器。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-08-01T10:08:45.519Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Vue之kindeditor富文本编辑器">
+<meta name="twitter:description" content="本文主要介绍如何在Vue中使用kindeditor富文本编辑器。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/07/17/Vue之kindeditor富文本编辑器/">
+
+
+
+
+
+  <title>Vue之kindeditor富文本编辑器 | 范二先生的博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">范二先生的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/17/Vue之kindeditor富文本编辑器/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="范二先生丶">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="范二先生的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Vue之kindeditor富文本编辑器</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-17T09:12:34+08:00">
+                2019-07-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">Javascript</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+              <div class="post-description">
+                  本文主要介绍如何在Vue中使用kindeditor富文本编辑器。
+              </div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>1.安装kindeditor</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install kindeditor --save</span><br></pre></td></tr></table></figure>
+
+<p>2.在vue的static文件夹中创建kindeditor，将plugins，lang，themes，kindeditor-all.js放入kindeditor</p>
+<p>3.创建KindEditor.vue</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br><span class="line">300</span><br><span class="line">301</span><br><span class="line">302</span><br><span class="line">303</span><br><span class="line">304</span><br><span class="line">305</span><br><span class="line">306</span><br><span class="line">307</span><br><span class="line">308</span><br><span class="line">309</span><br><span class="line">310</span><br><span class="line">311</span><br><span class="line">312</span><br><span class="line">313</span><br><span class="line">314</span><br><span class="line">315</span><br><span class="line">316</span><br><span class="line">317</span><br><span class="line">318</span><br><span class="line">319</span><br><span class="line">320</span><br><span class="line">321</span><br><span class="line">322</span><br><span class="line">323</span><br><span class="line">324</span><br><span class="line">325</span><br><span class="line">326</span><br><span class="line">327</span><br><span class="line">328</span><br><span class="line">329</span><br><span class="line">330</span><br><span class="line">331</span><br><span class="line">332</span><br><span class="line">333</span><br><span class="line">334</span><br><span class="line">335</span><br><span class="line">336</span><br><span class="line">337</span><br><span class="line">338</span><br><span class="line">339</span><br><span class="line">340</span><br><span class="line">341</span><br><span class="line">342</span><br><span class="line">343</span><br><span class="line">344</span><br><span class="line">345</span><br><span class="line">346</span><br><span class="line">347</span><br><span class="line">348</span><br><span class="line">349</span><br><span class="line">350</span><br><span class="line">351</span><br><span class="line">352</span><br><span class="line">353</span><br><span class="line">354</span><br><span class="line">355</span><br><span class="line">356</span><br><span class="line">357</span><br><span class="line">358</span><br><span class="line">359</span><br><span class="line">360</span><br><span class="line">361</span><br><span class="line">362</span><br><span class="line">363</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div class=&quot;kindeditor&quot;&gt;</span><br><span class="line">    &lt;textarea :id=&quot;id&quot; name=&quot;content&quot;&gt;&#123;&#123; outContent &#125;&#125;&lt;/textarea&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">  name: &apos;kindeditor&apos;,</span><br><span class="line">  data () &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      editor: null,</span><br><span class="line">      outContent: this.content</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  props: &#123;</span><br><span class="line">    content: &#123;</span><br><span class="line">      type: String,</span><br><span class="line">      default: &apos;&apos;</span><br><span class="line">    &#125;,</span><br><span class="line">    id: &#123;</span><br><span class="line">      type: String,</span><br><span class="line">      required: true</span><br><span class="line">    &#125;,</span><br><span class="line">    width: &#123;</span><br><span class="line">      type: String</span><br><span class="line">    &#125;,</span><br><span class="line">    height: &#123;</span><br><span class="line">      type: String</span><br><span class="line">    &#125;,</span><br><span class="line">    minWidth: &#123;</span><br><span class="line">      type: Number,</span><br><span class="line">      default: 650</span><br><span class="line">    &#125;,</span><br><span class="line">    minHeight: &#123;</span><br><span class="line">      type: Number,</span><br><span class="line">      default: 100</span><br><span class="line">    &#125;,</span><br><span class="line">    items: &#123;</span><br><span class="line">      type: Array,</span><br><span class="line">      default: function () &#123;</span><br><span class="line">        return [</span><br><span class="line">          &apos;source&apos;, &apos;|&apos;, &apos;undo&apos;, &apos;redo&apos;, &apos;|&apos;, &apos;preview&apos;, &apos;print&apos;, &apos;template&apos;, &apos;code&apos;, &apos;cut&apos;, &apos;copy&apos;, &apos;paste&apos;,</span><br><span class="line">          &apos;plainpaste&apos;, &apos;wordpaste&apos;, &apos;|&apos;, &apos;justifyleft&apos;, &apos;justifycenter&apos;, &apos;justifyright&apos;,</span><br><span class="line">          &apos;justifyfull&apos;, &apos;insertorderedlist&apos;, &apos;insertunorderedlist&apos;, &apos;indent&apos;, &apos;outdent&apos;, &apos;subscript&apos;,</span><br><span class="line">          &apos;superscript&apos;, &apos;clearhtml&apos;, &apos;quickformat&apos;, &apos;selectall&apos;, &apos;|&apos;, &apos;fullscreen&apos;, &apos;/&apos;,</span><br><span class="line">          &apos;formatblock&apos;, &apos;fontname&apos;, &apos;fontsize&apos;, &apos;|&apos;, &apos;forecolor&apos;, &apos;hilitecolor&apos;, &apos;bold&apos;,</span><br><span class="line">          &apos;italic&apos;, &apos;underline&apos;, &apos;strikethrough&apos;, &apos;lineheight&apos;, &apos;removeformat&apos;, &apos;|&apos;, &apos;image&apos;, &apos;multiimage&apos;,</span><br><span class="line">          &apos;flash&apos;, &apos;media&apos;, &apos;insertfile&apos;, &apos;table&apos;, &apos;hr&apos;, &apos;emoticons&apos;, &apos;baidumap&apos;, &apos;pagebreak&apos;,</span><br><span class="line">          &apos;anchor&apos;, &apos;link&apos;, &apos;unlink&apos;, &apos;|&apos;, &apos;about&apos;</span><br><span class="line">        ]</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    noDisableItems: &#123;</span><br><span class="line">      type: Array,</span><br><span class="line">      default: function () &#123;</span><br><span class="line">        return [&apos;source&apos;, &apos;fullscreen&apos;]</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    filterMode: &#123;</span><br><span class="line">      type: Boolean,</span><br><span class="line">      default: true</span><br><span class="line">    &#125;,</span><br><span class="line">    htmlTags: &#123;</span><br><span class="line">      type: Object,</span><br><span class="line">      default: function () &#123;</span><br><span class="line">        return &#123;</span><br><span class="line">          font: [&apos;color&apos;, &apos;size&apos;, &apos;face&apos;, &apos;.background-color&apos;],</span><br><span class="line">          span: [&apos;style&apos;],</span><br><span class="line">          div: [&apos;class&apos;, &apos;align&apos;, &apos;style&apos;],</span><br><span class="line">          table: [&apos;class&apos;, &apos;border&apos;, &apos;cellspacing&apos;, &apos;cellpadding&apos;, &apos;width&apos;, &apos;height&apos;, &apos;align&apos;, &apos;style&apos;],</span><br><span class="line">          &apos;td,th&apos;: [&apos;class&apos;, &apos;align&apos;, &apos;valign&apos;, &apos;width&apos;, &apos;height&apos;, &apos;colspan&apos;, &apos;rowspan&apos;, &apos;bgcolor&apos;, &apos;style&apos;],</span><br><span class="line">          a: [&apos;class&apos;, &apos;href&apos;, &apos;target&apos;, &apos;name&apos;, &apos;style&apos;],</span><br><span class="line">          embed: [&apos;src&apos;, &apos;width&apos;, &apos;height&apos;, &apos;type&apos;, &apos;loop&apos;, &apos;autostart&apos;, &apos;quality&apos;,</span><br><span class="line">            &apos;style&apos;, &apos;align&apos;, &apos;allowscriptaccess&apos;, &apos;/&apos;],</span><br><span class="line">          img: [&apos;src&apos;, &apos;width&apos;, &apos;height&apos;, &apos;border&apos;, &apos;alt&apos;, &apos;title&apos;, &apos;align&apos;, &apos;style&apos;, &apos;/&apos;],</span><br><span class="line">          hr: [&apos;class&apos;, &apos;/&apos;],</span><br><span class="line">          br: [&apos;/&apos;],</span><br><span class="line">          &apos;p,ol,ul,li,blockquote,h1,h2,h3,h4,h5,h6&apos;: [&apos;align&apos;, &apos;style&apos;],</span><br><span class="line">          &apos;tbody,tr,strong,b,sub,sup,em,i,u,strike&apos;: []</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    wellFormatMode: &#123;</span><br><span class="line">      type: Boolean,</span><br><span class="line">      default: true</span><br><span class="line">    &#125;,</span><br><span class="line">    resizeType: &#123;</span><br><span class="line">      type: Number,</span><br><span class="line">      default: 2</span><br><span class="line">    &#125;,</span><br><span class="line">    themeType: &#123;</span><br><span class="line">      type: String,</span><br><span class="line">      default: &apos;default&apos;</span><br><span class="line">    &#125;,</span><br><span class="line">    langType: &#123;</span><br><span class="line">      type: String,</span><br><span class="line">      default: &apos;zh-CN&apos;</span><br><span class="line">    &#125;,</span><br><span class="line">    designMode: &#123;</span><br><span class="line">      type: Boolean,</span><br><span class="line">      default: true</span><br><span class="line">    &#125;,</span><br><span class="line">    fullscreenMode: &#123;</span><br><span class="line">      type: Boolean,</span><br><span class="line">      default: false</span><br><span class="line">    &#125;,</span><br><span class="line">    basePath: &#123;</span><br><span class="line">      type: String</span><br><span class="line">    &#125;,</span><br><span class="line">    themesPath: &#123;</span><br><span class="line">      type: String</span><br><span class="line">    &#125;,</span><br><span class="line">    pluginsPath: &#123;</span><br><span class="line">      type: String,</span><br><span class="line">      default: &apos;&apos;</span><br><span class="line">    &#125;,</span><br><span class="line">    langPath: &#123;</span><br><span class="line">      type: String</span><br><span class="line">    &#125;,</span><br><span class="line">    minChangeSize: &#123;</span><br><span class="line">      type: Number,</span><br><span class="line">      default: 5</span><br><span class="line">    &#125;,</span><br><span class="line">    loadStyleMode: &#123;</span><br><span class="line">      type: Boolean,</span><br><span class="line">      default: true</span><br><span class="line">    &#125;,</span><br><span class="line">    urlType: &#123;</span><br><span class="line">      type: String,</span><br><span class="line">      default: &apos;&apos;</span><br><span class="line">    &#125;,</span><br><span class="line">    newlineTag: &#123;</span><br><span class="line">      type: String,</span><br><span class="line">      default: &apos;p&apos;</span><br><span class="line">    &#125;,</span><br><span class="line">    pasteType: &#123;</span><br><span class="line">      type: Number,</span><br><span class="line">      default: 2</span><br><span class="line">    &#125;,</span><br><span class="line">    dialogAlignType: &#123;</span><br><span class="line">      type: String,</span><br><span class="line">      default: &apos;page&apos;</span><br><span class="line">    &#125;,</span><br><span class="line">    shadowMode: &#123;</span><br><span class="line">      type: Boolean,</span><br><span class="line">      default: true</span><br><span class="line">    &#125;,</span><br><span class="line">    zIndex: &#123;</span><br><span class="line">      type: Number,</span><br><span class="line">      default: 811213</span><br><span class="line">    &#125;,</span><br><span class="line">    useContextmenu: &#123;</span><br><span class="line">      type: Boolean,</span><br><span class="line">      default: true</span><br><span class="line">    &#125;,</span><br><span class="line">    syncType: &#123;</span><br><span class="line">      type: String,</span><br><span class="line">      default: &apos;form&apos;</span><br><span class="line">    &#125;,</span><br><span class="line">    indentChar: &#123;</span><br><span class="line">      type: String,</span><br><span class="line">      default: &apos;\t&apos;</span><br><span class="line">    &#125;,</span><br><span class="line">    cssPath: &#123;</span><br><span class="line">      type: [ String, Array ]</span><br><span class="line">    &#125;,</span><br><span class="line">    cssData: &#123;</span><br><span class="line">      type: String</span><br><span class="line">    &#125;,</span><br><span class="line">    bodyClass: &#123;</span><br><span class="line">      type: String,</span><br><span class="line">      default: &apos;ke-content&apos;</span><br><span class="line">    &#125;,</span><br><span class="line">    colorTable: &#123;</span><br><span class="line">      type: Array</span><br><span class="line">    &#125;,</span><br><span class="line">    afterCreate: &#123;</span><br><span class="line">      type: Function</span><br><span class="line">    &#125;,</span><br><span class="line">    afterChange: &#123;</span><br><span class="line">      type: Function</span><br><span class="line">    &#125;,</span><br><span class="line">    afterTab: &#123;</span><br><span class="line">      type: Function</span><br><span class="line">    &#125;,</span><br><span class="line">    afterFocus: &#123;</span><br><span class="line">      type: Function</span><br><span class="line">    &#125;,</span><br><span class="line">    afterBlur: &#123;</span><br><span class="line">      type: Function</span><br><span class="line">    &#125;,</span><br><span class="line">    afterUpload: &#123;</span><br><span class="line">      type: Function</span><br><span class="line">    &#125;,</span><br><span class="line">    uploadJson: &#123;</span><br><span class="line">      type: String</span><br><span class="line">    &#125;,</span><br><span class="line">    fileManagerJson: &#123;</span><br><span class="line">      type: Function</span><br><span class="line">    &#125;,</span><br><span class="line">    allowPreviewEmoticons: &#123;</span><br><span class="line">      type: Boolean,</span><br><span class="line">      default: true</span><br><span class="line">    &#125;,</span><br><span class="line">    allowImageUpload: &#123;</span><br><span class="line">      type: Boolean,</span><br><span class="line">      default: true</span><br><span class="line">    &#125;,</span><br><span class="line">    allowFlashUpload: &#123;</span><br><span class="line">      type: Boolean,</span><br><span class="line">      default: true</span><br><span class="line">    &#125;,</span><br><span class="line">    allowMediaUpload: &#123;</span><br><span class="line">      type: Boolean,</span><br><span class="line">      default: true</span><br><span class="line">    &#125;,</span><br><span class="line">    allowFileUpload: &#123;</span><br><span class="line">      type: Boolean,</span><br><span class="line">      default: true</span><br><span class="line">    &#125;,</span><br><span class="line">    allowFileManager: &#123;</span><br><span class="line">      type: Boolean,</span><br><span class="line">      default: false</span><br><span class="line">    &#125;,</span><br><span class="line">    fontSizeTable: &#123;</span><br><span class="line">      type: Array,</span><br><span class="line">      default: function () &#123;</span><br><span class="line">        return [&apos;9px&apos;, &apos;10px&apos;, &apos;12px&apos;, &apos;14px&apos;, &apos;16px&apos;, &apos;18px&apos;, &apos;24px&apos;, &apos;32px&apos;]</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    imageTabIndex: &#123;</span><br><span class="line">      type: Number,</span><br><span class="line">      default: 0</span><br><span class="line">    &#125;,</span><br><span class="line">    formatUploadUrl: &#123;</span><br><span class="line">      type: Boolean,</span><br><span class="line">      default: true</span><br><span class="line">    &#125;,</span><br><span class="line">    fullscreenShortcut: &#123;</span><br><span class="line">      type: Boolean,</span><br><span class="line">      default: false</span><br><span class="line">    &#125;,</span><br><span class="line">    extraFileUploadParams: &#123;</span><br><span class="line">      type: Array,</span><br><span class="line">      default: function () &#123;</span><br><span class="line">        return []</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    filePostName: &#123;</span><br><span class="line">      type: String,</span><br><span class="line">      default: &apos;imgFile&apos;</span><br><span class="line">    &#125;,</span><br><span class="line">    fillDescAfterUploadImage: &#123;</span><br><span class="line">      type: Boolean,</span><br><span class="line">      default: false</span><br><span class="line">    &#125;,</span><br><span class="line">    afterSelectFile: &#123;</span><br><span class="line">      type: Function</span><br><span class="line">    &#125;,</span><br><span class="line">    pagebreakHtml: &#123;</span><br><span class="line">      type: String,</span><br><span class="line">      default: &apos;&lt;hr style=”page-break-after: always;” class=”ke-pagebreak” /&gt;&apos;</span><br><span class="line">    &#125;,</span><br><span class="line">    allowImageRemote: &#123;</span><br><span class="line">      type: Boolean,</span><br><span class="line">      default: true</span><br><span class="line">    &#125;,</span><br><span class="line">    autoHeightMode: &#123;</span><br><span class="line">      type: Boolean,</span><br><span class="line">      default: false</span><br><span class="line">    &#125;,</span><br><span class="line">    fixToolBar: &#123;</span><br><span class="line">      type: Boolean,</span><br><span class="line">      default: false</span><br><span class="line">    &#125;,</span><br><span class="line">    tabIndex: &#123;</span><br><span class="line">      type: Number</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  watch: &#123;</span><br><span class="line">    content (val) &#123;</span><br><span class="line">      this.editor &amp;&amp; val !== this.outContent &amp;&amp; this.editor.html(val)</span><br><span class="line">    &#125;,</span><br><span class="line">    outContent (val) &#123;</span><br><span class="line">      this.$emit(&apos;update:content&apos;, val)</span><br><span class="line">      this.$emit(&apos;on-content-change&apos;, val)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  mounted () &#123;</span><br><span class="line">    var _this = this</span><br><span class="line">    _this.editor = window.KindEditor.create(&apos;#&apos; + this.id, &#123;</span><br><span class="line">      width: _this.width,</span><br><span class="line">      height: _this.height,</span><br><span class="line">      minWidth: _this.minWidth,</span><br><span class="line">      minHeight: _this.minHeight,</span><br><span class="line">      items: _this.items,</span><br><span class="line">      noDisableItems: _this.noDisableItems,</span><br><span class="line">      filterMode: _this.filterMode,</span><br><span class="line">      htmlTags: _this.htmlTags,</span><br><span class="line">      wellFormatMode: _this.wellFormatMode,</span><br><span class="line">      resizeType: _this.resizeType,</span><br><span class="line">      themeType: _this.themeType,</span><br><span class="line">      langType: _this.langType,</span><br><span class="line">      designMode: _this.designMode,</span><br><span class="line">      fullscreenMode: _this.fullscreenMode,</span><br><span class="line">      basePath: _this.basePath,</span><br><span class="line">      themesPath: _this.cssPath,</span><br><span class="line">      pluginsPath: _this.pluginsPath,</span><br><span class="line">      langPath: _this.langPath,</span><br><span class="line">      minChangeSize: _this.minChangeSize,</span><br><span class="line">      loadStyleMode: _this.loadStyleMode,</span><br><span class="line">      urlType: _this.urlType,</span><br><span class="line">      newlineTag: _this.newlineTag,</span><br><span class="line">      pasteType: _this.pasteType,</span><br><span class="line">      dialogAlignType: _this.dialogAlignType,</span><br><span class="line">      shadowMode: _this.shadowMode,</span><br><span class="line">      zIndex: _this.zIndex,</span><br><span class="line">      useContextmenu: _this.useContextmenu,</span><br><span class="line">      syncType: _this.syncType,</span><br><span class="line">      indentChar: _this.indentChar,</span><br><span class="line">      cssPath: _this.cssPath,</span><br><span class="line">      cssData: _this.cssData,</span><br><span class="line">      bodyClass: _this.bodyClass,</span><br><span class="line">      colorTable: _this.colorTable,</span><br><span class="line">      afterCreate: _this.afterCreate,</span><br><span class="line">      afterChange: function () &#123;</span><br><span class="line">        _this.afterChange</span><br><span class="line">        _this.outContent = this.html()</span><br><span class="line">      &#125;,</span><br><span class="line">      afterTab: _this.afterTab,</span><br><span class="line">      afterFocus: _this.afterFocus,</span><br><span class="line">      afterBlur: _this.afterBlur,</span><br><span class="line">      afterUpload: _this.afterUpload,</span><br><span class="line">      uploadJson: _this.uploadJson,</span><br><span class="line">      fileManagerJson: _this.fileManagerJson,</span><br><span class="line">      allowPreviewEmoticons: _this.allowPreviewEmoticons,</span><br><span class="line">      allowImageUpload: _this.allowImageUpload,</span><br><span class="line">      allowFlashUpload: _this.allowFlashUpload,</span><br><span class="line">      allowMediaUpload: _this.allowMediaUpload,</span><br><span class="line">      allowFileUpload: _this.allowFileUpload,</span><br><span class="line">      allowFileManager: _this.allowFileManager,</span><br><span class="line">      fontSizeTable: _this.fontSizeTable,</span><br><span class="line">      imageTabIndex: _this.imageTabIndex,</span><br><span class="line">      formatUploadUrl: _this.formatUploadUrl,</span><br><span class="line">      fullscreenShortcut: _this.fullscreenShortcut,</span><br><span class="line">      extraFileUploadParams: _this.extraFileUploadParams,</span><br><span class="line">      filePostName: _this.filePostName,</span><br><span class="line">      fillDescAfterUploadImage: _this.fillDescAfterUploadImage,</span><br><span class="line">      afterSelectFile: _this.afterSelectFile,</span><br><span class="line">      pagebreakHtml: _this.pagebreakHtml,</span><br><span class="line">      allowImageRemote: _this.allowImageRemote,</span><br><span class="line">      autoHeightMode: _this.autoHeightMode,</span><br><span class="line">      fixToolBar: _this.fixToolBar,</span><br><span class="line">      tabIndex: _this.tabIndex</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style&gt;</span><br><span class="line">  </span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+
+<p>4.在src/utils下创建kindeditor.js</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">import KindEditor from &apos;../components/KindEditor&apos;</span><br><span class="line">const install = function (Vue) &#123;</span><br><span class="line">  if (install.installed) return</span><br><span class="line">  install.installed = true</span><br><span class="line">  Vue.component(&apos;editor&apos;, KindEditor)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export default install</span><br></pre></td></tr></table></figure>
+
+<p>5.在main.js引入</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">//引入kindeditor富文本</span><br><span class="line">import VueKindEditor from &apos;./utils/kindeditor.js&apos;</span><br><span class="line">import &apos;../static/kindeditor/themes/default/default.css&apos;</span><br><span class="line">import &apos;../static/kindeditor/kindeditor-all.js&apos;</span><br><span class="line">import &apos;../static/kindeditor/lang/zh-CN.js&apos;</span><br><span class="line">Vue.use(VueKindEditor)</span><br></pre></td></tr></table></figure>
+
+<p>6.组件调用</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div class=&quot;table&quot;&gt; </span><br><span class="line">    &lt;editor id=&quot;editor_id&quot; height=&quot;500px&quot; width=&quot;700px&quot; :content.sync=&quot;editorText&quot;</span><br><span class="line">            :afterChange=&quot;afterChange()&quot;</span><br><span class="line">            pluginsPath=&quot;../../../static/kindeditor/plugins/&quot;</span><br><span class="line">            :loadStyleMode=&quot;false&quot;</span><br><span class="line">            @on-content-change=&quot;onContentChange&quot;&gt;&lt;/editor&gt;</span><br><span class="line">    &lt;div&gt; editorTextCopy: &#123;&#123; editorTextCopy &#125;&#125; &lt;/div&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">  name: &apos;table&apos;,</span><br><span class="line">  data () &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      editorText: &apos;初始化值&apos;, // 初始值</span><br><span class="line">      editorTextCopy: &apos;&apos;  // 事件回调改变的对象</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">    methods: &#123;</span><br><span class="line">    onContentChange (val) &#123;</span><br><span class="line">      this.editorTextCopy = val;</span><br><span class="line">      console.log(this.editorTextCopy)</span><br><span class="line">    &#125;,</span><br><span class="line">    afterChange () &#123;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style&gt;</span><br><span class="line"></span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div></div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/image/wechat.jpg" alt="范二先生丶 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    范二先生丶
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://yoursite.com/2019/07/17/Vue之kindeditor富文本编辑器/" title="Vue之kindeditor富文本编辑器">http://yoursite.com/2019/07/17/Vue之kindeditor富文本编辑器/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Javascript/" rel="tag"># Javascript</a>
+          
+            <a href="/tags/vue/" rel="tag"># vue</a>
+          
+            <a href="/tags/kindeditor/" rel="tag"># kindeditor</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/07/17/数组方法/" rel="prev" title="数组方法">
+                数组方法 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div id="gitalk-container"></div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="范二先生丶">
+            
+              <p class="site-author-name" itemprop="name">范二先生丶</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">分类</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/Gaoyuan1024" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:396959534@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://plus.google.com/yourname" target="_blank" title="Google">
+                      
+                        <i class="fa fa-fw fa-google"></i>Google</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">范二先生丶</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+   <script type="text/javascript">
+        var gitalk = new Gitalk({
+          clientID: '9c8dfe2157a9c6ca738e',
+          clientSecret: '9e2f6e852ddec02088e9a80a4e2ad1b5a6802515',
+          repo: 'Gaoyuan1024.github.io',
+          owner: 'Gaoyuan1024',
+          admin: ['Gaoyuan1024'],
+          id: location.pathname,
+          distractionFreeMode: 'true'
+        })
+        gitalk.render('gitalk-container')           
+       </script>
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false});</script></body>
+</html>

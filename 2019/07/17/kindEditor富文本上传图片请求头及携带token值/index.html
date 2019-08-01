@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Javascript,ES6,">
+  <meta name="keywords" content="Javascript,vue,kindeditor,">
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="本文主要介绍如何在微信小程序中封装wx.request请求，并对请求做出统一的处理。">
-<meta name="keywords" content="Javascript,ES6">
+<meta name="description" content="本文主要介绍如何在kindEditor富文本设置上传图片请求头及携带token值。">
+<meta name="keywords" content="Javascript,vue,kindeditor">
 <meta property="og:type" content="article">
-<meta property="og:title" content="微信小程序 Promise封装请求">
-<meta property="og:url" content="http://yoursite.com/2019/07/17/微信小程序 Promise封装请求/index.html">
+<meta property="og:title" content="kindEditor富文本上传图片请求头及携带token值">
+<meta property="og:url" content="http://yoursite.com/2019/07/17/kindEditor富文本上传图片请求头及携带token值/index.html">
 <meta property="og:site_name" content="范二先生的博客">
-<meta property="og:description" content="本文主要介绍如何在微信小程序中封装wx.request请求，并对请求做出统一的处理。">
+<meta property="og:description" content="本文主要介绍如何在kindEditor富文本设置上传图片请求头及携带token值。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-08-01T10:07:30.990Z">
+<meta property="og:updated_time" content="2019-08-01T10:12:30.088Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="微信小程序 Promise封装请求">
-<meta name="twitter:description" content="本文主要介绍如何在微信小程序中封装wx.request请求，并对请求做出统一的处理。">
+<meta name="twitter:title" content="kindEditor富文本上传图片请求头及携带token值">
+<meta name="twitter:description" content="本文主要介绍如何在kindEditor富文本设置上传图片请求头及携带token值。">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/07/17/微信小程序 Promise封装请求/">
+  <link rel="canonical" href="http://yoursite.com/2019/07/17/kindEditor富文本上传图片请求头及携带token值/">
 
 
 
 
 
-  <title>微信小程序 Promise封装请求 | 范二先生的博客</title>
+  <title>kindEditor富文本上传图片请求头及携带token值 | 范二先生的博客</title>
   
 
 
@@ -243,7 +243,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/17/微信小程序 Promise封装请求/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/17/kindEditor富文本上传图片请求头及携带token值/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="范二先生丶">
@@ -260,7 +260,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">微信小程序 Promise封装请求</h1>
+          <h1 class="post-title" itemprop="name headline">kindEditor富文本上传图片请求头及携带token值</h1>
         
 
         <div class="post-meta">
@@ -319,7 +319,7 @@
 
           
               <div class="post-description">
-                  本文主要介绍如何在微信小程序中封装wx.request请求，并对请求做出统一的处理。
+                  本文主要介绍如何在kindEditor富文本设置上传图片请求头及携带token值。
               </div>
           
 
@@ -336,18 +336,18 @@
       
 
       
-        <ol>
-<li><p>在utils目录下创建http.js文件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 封装http 请求方法</span><br><span class="line"> */</span><br><span class="line">const apiUrl = &quot;https://easy-mock.com/mock/5d3e927cc41f05276e153aef/example&quot;; // 服务器api地址（我这里是使用easy-mock模拟接口）</span><br><span class="line">const http = (params) =&gt; &#123;</span><br><span class="line">  //返回promise 对象</span><br><span class="line">  return new Promise((resolve, reject) =&gt; &#123;</span><br><span class="line">    wx.request(&#123;</span><br><span class="line">      url: apiUrl + params.url,	// 服务器url+参数中携带的接口具体地址</span><br><span class="line">      data: params.data,	// 请求参数</span><br><span class="line">      header: params.header || &#123;</span><br><span class="line">        &quot;Content-Type&quot;: &quot;application/x-www-form-urlencoded&quot;	// 设置后端需要的常用的格式就好，特殊情况调用的时候单独设置</span><br><span class="line">      &#125;,</span><br><span class="line">      method: params.method || &apos;POST&apos;,//默认为GET,可以不写，如常用请求格式为POST，可以设置POST为默认请求方式</span><br><span class="line">      dataType: params.dataType,//返回的数据格式,默认为JSON，特殊格式可以在调用的时候传入参数</span><br><span class="line">      responseType: params.responseType,//响应的数据类型</span><br><span class="line">      success: function (res) &#123;</span><br><span class="line">        //接口访问正常返回数据</span><br><span class="line">        if (res.statusCode == 200) &#123;</span><br><span class="line">          console.log(res.data)</span><br><span class="line">          resolve(res.data)</span><br><span class="line">          //1. 操作成功返回数据,原则上只针对服务器端返回成功的状态（如本例中为000000）</span><br><span class="line">          // if (params.url == &quot;/order/result&quot; &amp;&amp; res.data.retCode == &quot;800020&quot;) &#123;//支付结果未知      </span><br><span class="line">          //   //需要特殊处理的接口，可以单独列出来返回数据</span><br><span class="line">          //   resolve(res.data)</span><br><span class="line">          // &#125; else &#123;</span><br><span class="line">          //   wx.showToast(&#123;</span><br><span class="line">          //     icon: &quot;none&quot;,</span><br><span class="line">          //     title: res.data.retMsg</span><br><span class="line">          //   &#125;)</span><br><span class="line">          //   console.log(res.data)</span><br><span class="line">          // &#125;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">          //2. 操作不成功返回数据，以toast方式弹出响应信息，如后端未格式化非操作成功异常信息，则可以统一定义异常提示</span><br><span class="line">          var errMsg = res.data.message</span><br><span class="line">          errorToast();</span><br><span class="line">          console.log(res.data)</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;,</span><br><span class="line">      fail: function (e) &#123;</span><br><span class="line">        errorToast();</span><br><span class="line">        reject(e)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line">module.exports = &#123;</span><br><span class="line">  http: http</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>创建api.js</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">import &#123; http &#125; from &apos;../utils/http.js&apos;</span><br><span class="line"></span><br><span class="line">var url = &#123;</span><br><span class="line">  userLogin: &quot;/user/login&quot;,</span><br><span class="line">  getUserPhone: &quot;/getData&quot;,</span><br><span class="line">  // ...</span><br><span class="line">  userCardReceive: &quot;/card/receive&quot; </span><br><span class="line">&#125;</span><br><span class="line">module.exports = &#123;</span><br><span class="line">  // userLogin(code) &#123;</span><br><span class="line">  //   return http(&#123;</span><br><span class="line">  //     url: url.userLogin,</span><br><span class="line">  //     data: &#123; code: code &#125;,</span><br><span class="line">  //     header: &#123;</span><br><span class="line">  //       &quot;Content-Type&quot;: &quot;application/x-www-form-urlencoded&quot;</span><br><span class="line">  //     &#125;</span><br><span class="line">  //   &#125;)</span><br><span class="line">  // &#125;,</span><br><span class="line">  getUserPhone(params) &#123;</span><br><span class="line">    return http(&#123;</span><br><span class="line">      url: url.getUserPhone,</span><br><span class="line">      data: params</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;,</span><br><span class="line">  // ...</span><br><span class="line">  userCardReceive() &#123;</span><br><span class="line">    return http(&#123;</span><br><span class="line">      url: url.userCardReceive,</span><br><span class="line">      method: &quot;GET&quot;</span><br><span class="line">     &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>页面引用</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">const http = require(&apos;../../utils/api.js&apos;) </span><br><span class="line"></span><br><span class="line">Page(&#123;</span><br><span class="line">  data: &#123;&#125;,	 </span><br><span class="line">  onLoad: function (options) &#123;</span><br><span class="line">    http.getUserPhone().then(data =&gt; &#123;</span><br><span class="line">        if (data) &#123;</span><br><span class="line">            //返回结果的处理逻辑</span><br><span class="line">            //  ...</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)  </span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+        <p>找到文件kindeditor-all.js ，全文搜索“KindEditor.plugin(‘image’, function(K) {”</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">var dialog = self.createDialog(&#123;</span><br><span class="line">name : name,</span><br><span class="line">width : dialogWidth,</span><br><span class="line">height : dialogHeight,</span><br><span class="line">title : self.lang(name),</span><br><span class="line">body : html,</span><br><span class="line">yesBtn : &#123;</span><br><span class="line">	name : self.lang(&apos;yes&apos;),</span><br><span class="line">	click: function (e) &#123;</span><br><span class="line"></span><br><span class="line">        // 修改这里的代码</span><br><span class="line">       &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 
-</li>
-</ol>
+<p>kindEditor富文本图片上传分为本地上传和网络图片上传，判断条件是tabs.selectedIndex === 1，为1时是本地上传，为0时是网络上传。具体代码修改如下所示：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">click : function(e) &#123;</span><br><span class="line">if (dialog.isLoading) &#123;</span><br><span class="line">	return;</span><br><span class="line">&#125;</span><br><span class="line">// 网络图片上传</span><br><span class="line">if (tabs.selectedIndex === 0) &#123;</span><br><span class="line">	if (showLocal &amp;&amp; showRemote &amp;&amp; tabs &amp;&amp; tabs.selectedIndex === 1 || !showRemote) &#123;</span><br><span class="line">		if (uploadbutton.fileBox.val() == &apos;&apos;) &#123;</span><br><span class="line">			alert(self.lang(&apos;pleaseSelectFile&apos;));</span><br><span class="line">			return;</span><br><span class="line">		&#125;</span><br><span class="line">		dialog.showLoading(self.lang(&apos;uploadLoading&apos;));</span><br><span class="line">		uploadbutton.submit();</span><br><span class="line">		localUrlBox.val(&apos;&apos;);</span><br><span class="line">		return;</span><br><span class="line">	&#125;</span><br><span class="line">	var url = K.trim(urlBox.val()),</span><br><span class="line">		width = widthBox.val(),</span><br><span class="line">		height = heightBox.val(),</span><br><span class="line">		title = titleBox.val(),</span><br><span class="line">		align = &apos;&apos;;</span><br><span class="line">	alignBox.each(function() &#123;</span><br><span class="line">		if (this.checked) &#123;</span><br><span class="line">			align = this.value;</span><br><span class="line">			return false;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;);</span><br><span class="line">	if (url == &apos;http://&apos; || K.invalidUrl(url)) &#123;</span><br><span class="line">		alert(self.lang(&apos;invalidUrl&apos;));</span><br><span class="line">		urlBox[0].focus();</span><br><span class="line">		return;</span><br><span class="line">	&#125;</span><br><span class="line">	if (!/^\d*$/.test(width)) &#123;</span><br><span class="line">		alert(self.lang(&apos;invalidWidth&apos;));</span><br><span class="line">		widthBox[0].focus();</span><br><span class="line">		return;</span><br><span class="line">	&#125;</span><br><span class="line">	if (!/^\d*$/.test(height)) &#123;</span><br><span class="line">		alert(self.lang(&apos;invalidHeight&apos;));</span><br><span class="line">		heightBox[0].focus();</span><br><span class="line">		return;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">// 本地图片上传</span><br><span class="line">if (tabs.selectedIndex === 1) &#123;</span><br><span class="line">	// 此处的代码具体看下面两种实现方式</span><br><span class="line">&#125;</span><br><span class="line">clickFn.call(self, url, title, width, height, 0, align);</span><br></pre></td></tr></table></figure>
+
+<p>方法一：使用jQuery</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">var formData = new FormData();</span><br><span class="line">var file = document.getElementsByClassName(&quot;ke-upload-file&quot;);</span><br><span class="line">formData.append(&apos;file&apos;, file[0].files[0]);</span><br><span class="line"> </span><br><span class="line">dialog.showLoading(self.lang(&apos;uploadLoading&apos;));</span><br><span class="line"> </span><br><span class="line">$.ajax(&#123;</span><br><span class="line">	url: &quot;file/upload&quot;,    // 文件上传地址</span><br><span class="line">	type: &apos;POST&apos;,</span><br><span class="line">	cache: false,</span><br><span class="line">	data: formData,</span><br><span class="line">	processData: false,</span><br><span class="line">	contentType: false,</span><br><span class="line">	dataType: &quot;json&quot;,</span><br><span class="line">	beforeSend: function (request) &#123;</span><br><span class="line">		request.setRequestHeader(&quot;token&quot;, &apos;此处放token&apos;);</span><br><span class="line">	&#125;,</span><br><span class="line">	success: function (data) &#123;</span><br><span class="line">		console.log(data);</span><br><span class="line">		uploading = false;</span><br><span class="line">		url = data.img_url;   // 此处是上传成功之后后端返回的图片地址</span><br><span class="line">		var img = new Image();</span><br><span class="line">		img.src = url;</span><br><span class="line">		// 获取图片的宽高</span><br><span class="line">		img.onload = function () &#123;</span><br><span class="line">			clickFn.call(self, url, &apos;图片的名字&apos;, img.width + &apos;px&apos;, img.height + &apos;px&apos;, 0, &apos;center&apos;);</span><br><span class="line">		&#125;</span><br><span class="line">		setTimeout(function () &#123;</span><br><span class="line">			self.hideDialog().focus();</span><br><span class="line">		&#125;, 0);</span><br><span class="line">		dialog.isLoading = false;</span><br><span class="line">	&#125;,</span><br><span class="line">	error: function (data) &#123;</span><br><span class="line">		alert(data.error);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>方法二：原生JS</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">var formData = new FormData();</span><br><span class="line">var file = document.getElementsByClassName(&quot;ke-upload-file&quot;);</span><br><span class="line">formData.append(&apos;file&apos;, file[0].files[0]);</span><br><span class="line"> </span><br><span class="line">dialog.showLoading(self.lang(&apos;uploadLoading&apos;));</span><br><span class="line">var xhr = new XMLHttpRequest();</span><br><span class="line">var url = &quot;/file/upload&quot;;   // 文件上传的地址</span><br><span class="line">xhr.open(&apos;POST&apos;, url, true);</span><br><span class="line">// 设置token</span><br><span class="line">xhr.setRequestHeader(&apos;x-auth-token&apos;, sessionStorage.token);</span><br><span class="line">xhr.onreadystatechange = function () &#123;</span><br><span class="line">	if (xhr.readyState == 4 &amp;&amp; (xhr.status == 200 || xhr.status == 304)) &#123;</span><br><span class="line">		var res = JSON.parse(xhr.responseText);</span><br><span class="line">		data = res.data;</span><br><span class="line">		uploading = false;</span><br><span class="line">		var srcUrl = data.img_url;</span><br><span class="line">		var img = new Image();</span><br><span class="line">		img.src = srcUrl;</span><br><span class="line">		img.onload = function () &#123;</span><br><span class="line">			clickFn.call(self, srcUrl, &apos;图片的名字&apos;, img.width + &apos;px&apos;, img.height + &apos;px&apos;, 0, &apos;center&apos;);</span><br><span class="line">		&#125;</span><br><span class="line">		setTimeout(function () &#123;</span><br><span class="line">			self.hideDialog().focus();</span><br><span class="line">		&#125;, 0);</span><br><span class="line">		dialog.isLoading = false;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">xhr.send(formData);</span><br></pre></td></tr></table></figure>
+
 
       
     </div>
@@ -392,7 +392,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://yoursite.com/2019/07/17/微信小程序 Promise封装请求/" title="微信小程序 Promise封装请求">http://yoursite.com/2019/07/17/微信小程序 Promise封装请求/</a>
+    <a href="http://yoursite.com/2019/07/17/kindEditor富文本上传图片请求头及携带token值/" title="kindEditor富文本上传图片请求头及携带token值">http://yoursite.com/2019/07/17/kindEditor富文本上传图片请求头及携带token值/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -409,7 +409,9 @@
           
             <a href="/tags/Javascript/" rel="tag"># Javascript</a>
           
-            <a href="/tags/ES6/" rel="tag"># ES6</a>
+            <a href="/tags/vue/" rel="tag"># vue</a>
+          
+            <a href="/tags/kindeditor/" rel="tag"># kindeditor</a>
           
         </div>
       
@@ -422,8 +424,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/07/17/数组方法/" rel="next" title="数组方法">
-                <i class="fa fa-chevron-left"></i> 数组方法
+              <a href="/2019/07/17/微信小程序 Promise封装请求/" rel="next" title="微信小程序 Promise封装请求">
+                <i class="fa fa-chevron-left"></i> 微信小程序 Promise封装请求
               </a>
             
           </div>
@@ -432,8 +434,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/07/17/kindEditor富文本上传图片请求头及携带token值/" rel="prev" title="kindEditor富文本上传图片请求头及携带token值">
-                kindEditor富文本上传图片请求头及携带token值 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/07/17/Axios封装/" rel="prev" title="Axios自定义请求封装">
+                Axios自定义请求封装 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
