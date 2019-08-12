@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Javascript,ES6,Array,">
+  <meta name="keywords" content="ES6,Javascript,Array,">
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="本文主要介绍一些在日常开发过程中的数组方法。">
-<meta name="keywords" content="Javascript,ES6,Array">
+<meta name="description" content="本文主要总结一些在日常项目开发过程中的数组方法。">
+<meta name="keywords" content="ES6,Javascript,Array">
 <meta property="og:type" content="article">
 <meta property="og:title" content="数组方法">
 <meta property="og:url" content="http://yoursite.com/2019/07/17/数组方法/index.html">
 <meta property="og:site_name" content="范二先生的博客">
-<meta property="og:description" content="本文主要介绍一些在日常开发过程中的数组方法。">
+<meta property="og:description" content="本文主要总结一些在日常项目开发过程中的数组方法。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-07-24T03:47:00.256Z">
+<meta property="og:updated_time" content="2019-08-12T05:38:33.987Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数组方法">
-<meta name="twitter:description" content="本文主要介绍一些在日常开发过程中的数组方法。">
+<meta name="twitter:description" content="本文主要总结一些在日常项目开发过程中的数组方法。">
 
 
 
@@ -319,7 +319,7 @@
 
           
               <div class="post-description">
-                  本文主要介绍一些在日常开发过程中的数组方法。
+                  本文主要总结一些在日常项目开发过程中的数组方法。
               </div>
           
 
@@ -364,6 +364,9 @@
 </li>
 <li><p>数组对象合并、去重</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">let arr1=[</span><br><span class="line">  &#123;id:1,value:&quot;aaa&quot;&#125;,</span><br><span class="line">  &#123;id:2,value:&quot;bbb&quot;&#125;,</span><br><span class="line">  &#123;id:3,value:&quot;ccc&quot;&#125;,</span><br><span class="line">] </span><br><span class="line"></span><br><span class="line">let arr2=[</span><br><span class="line">  &#123;id:1,value:&quot;aaa&quot;,check:true,&#125;,</span><br><span class="line">  &#123;id:2,value:&quot;bbb&quot;,check:true,&#125;,</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">let arr = arr2.concat(arr1); //两个数组对象合并</span><br><span class="line"></span><br><span class="line">let newArr = []; //盛放去重后数据的新数组</span><br><span class="line"></span><br><span class="line">for(item1 of arr)&#123;  //循环json数组对象的内容</span><br><span class="line">  let flag = true;  //建立标记，判断数据是否重复，true为不重复</span><br><span class="line">  for(item2 of newArr)&#123;  //循环新数组的内容</span><br><span class="line">    if(item1.id==item2.id)&#123; //让json数组对象的内容与新数组的内容作比较，相同的话，改变标记为false</span><br><span class="line">      flag = false;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  if(flag)&#123; //判断是否重复</span><br><span class="line">    newArr.push(item1); //不重复的放入新数组。  新数组的内容会继续进行上边的循环。</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">console.log(&quot;newArr&quot;,newArr);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>判断一个数组是否包含另一个数组</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">isContain(arr1,arr2)&#123;  </span><br><span class="line">    for (var i = arr2.length - 1; i &gt;= 0; i--) &#123;  </span><br><span class="line">        if(!arr1.includes(arr2[i]))&#123;  </span><br><span class="line">          return false;  </span><br><span class="line">        &#125;  </span><br><span class="line">    &#125;  </span><br><span class="line">    return true;  </span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
 
 </li>
 </ul>
@@ -426,9 +429,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Javascript/" rel="tag"># Javascript</a>
-          
             <a href="/tags/ES6/" rel="tag"># ES6</a>
+          
+            <a href="/tags/Javascript/" rel="tag"># Javascript</a>
           
             <a href="/tags/Array/" rel="tag"># Array</a>
           
@@ -443,18 +446,14 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/07/17/Vue之kindeditor富文本编辑器/" rel="next" title="Vue之kindeditor富文本编辑器">
-                <i class="fa fa-chevron-left"></i> Vue之kindeditor富文本编辑器
-              </a>
-            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/07/17/微信小程序 Promise封装请求/" rel="prev" title="微信小程序 Promise封装请求">
-                微信小程序 Promise封装请求 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/07/18/Promise的用法/" rel="prev" title="Promise的用法">
+                Promise的用法 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -528,7 +527,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -550,7 +549,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -609,7 +608,8 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+        <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
@@ -619,7 +619,10 @@
 </div>
 
 
-  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+  <div class="theme-info">
+    <div class="powered-by"></div>
+    <span class="post-count">博客全站共5.1k字</span>
+  </div>
 
 
 

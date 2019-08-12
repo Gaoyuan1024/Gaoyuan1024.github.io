@@ -2012,7 +2012,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #ff006f;
+  background: #2d9e2d;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -3104,4 +3104,10 @@ hr {
     width: auto;
     text-align: center;
   }
+}
+* {
+  cursor: url("http://m.qpic.cn/psb?/V11DPurx1V2Z8F/zxz8M*0hPeVI98SS2ZdFbhY7mEPDtxDmtVia111oZwA!/b/dLYAAAAAAAAA&bo=GAAYAAAAAAADFzI!&rf=viewer_4&t=5"), auto !important;
+}
+:active {
+  cursor: url("http://m.qpic.cn/psb?/V11DPurx1V2Z8F/zxz8M*0hPeVI98SS2ZdFbhY7mEPDtxDmtVia111oZwA!/b/dLYAAAAAAAAA&bo=GAAYAAAAAAADFzI!&rf=viewer_4&t=5"), auto !important;
 }
