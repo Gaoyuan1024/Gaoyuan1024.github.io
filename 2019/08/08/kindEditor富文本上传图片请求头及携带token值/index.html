@@ -11,7 +11,20 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="theme-color" content="#222">
-
+<script>
+    (function () {
+        if ('') {
+            if (prompt('请输入文章密码') !== '') {
+                alert('密码错误！');
+                if (history.length === 1) {
+                    location.replace("http://xxxxxxx.xxx"); // 这里替换成你的首页
+                } else {
+                    history.back();
+                }
+            }
+        }
+    })();
+</script>
 
 
 
@@ -434,8 +447,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/08/15/Vue引用iView 多选框实现权限分配/" rel="prev" title="Vue引用iView Checkbox多选框实现权限分配">
-                Vue引用iView Checkbox多选框实现权限分配 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/08/15/旋转立方体/" rel="prev" title="3D旋转立方体">
+                3D旋转立方体 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -509,7 +522,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -520,7 +533,7 @@
               
               <div class="site-state-item site-state-categories">
                 
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">分类</span>
                 
               </div>
@@ -531,7 +544,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -603,7 +616,7 @@
 
   <div class="theme-info">
     <div class="powered-by"></div>
-    <span class="post-count">博客全站共5.1k字</span>
+    <span class="post-count">博客全站共5.4k字</span>
   </div>
 
 

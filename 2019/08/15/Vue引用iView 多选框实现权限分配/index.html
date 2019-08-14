@@ -11,7 +11,20 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="theme-color" content="#222">
-
+<script>
+    (function () {
+        if ('') {
+            if (prompt('请输入文章密码') !== '') {
+                alert('密码错误！');
+                if (history.length === 1) {
+                    location.replace("http://xxxxxxx.xxx"); // 这里替换成你的首页
+                } else {
+                    history.back();
+                }
+            }
+        }
+    })();
+</script>
 
 
 
@@ -88,7 +101,7 @@
 <meta property="og:description" content="本文主要如何在Vue中使用iView的 Checkbox多选框实现权限分配功能。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://thumbnail0.baidupcs.com/thumbnail/fc704aed4b217ab96f9367816e04ea31?fid=53604728-250528-223710765199313&rt=pr&sign=FDTAER-DCb740ccc5511e5e8fedcff06b081203-gT57rvUHN9br94QrWBS%2ftkAZT4Q%3d&expires=8h&chkbd=0&chkv=0&dp-logid=5182448068088660406&dp-callid=0&time=1565575200&size=c1920_u1080&quality=90&vuk=53604728&ft=image&autopolicy=1">
-<meta property="og:updated_time" content="2019-08-12T05:37:04.933Z">
+<meta property="og:updated_time" content="2019-08-14T03:56:15.015Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Vue引用iView Checkbox多选框实现权限分配">
 <meta name="twitter:description" content="本文主要如何在Vue中使用iView的 Checkbox多选框实现权限分配功能。">
@@ -423,8 +436,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/08/08/kindEditor富文本上传图片请求头及携带token值/" rel="next" title="kindEditor富文本上传图片请求头及携带token值">
-                <i class="fa fa-chevron-left"></i> kindEditor富文本上传图片请求头及携带token值
+              <a href="/2019/08/15/旋转立方体/" rel="next" title="3D旋转立方体">
+                <i class="fa fa-chevron-left"></i> 3D旋转立方体
               </a>
             
           </div>
@@ -504,7 +517,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -515,7 +528,7 @@
               
               <div class="site-state-item site-state-categories">
                 
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">分类</span>
                 
               </div>
@@ -526,7 +539,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -598,7 +611,7 @@
 
   <div class="theme-info">
     <div class="powered-by"></div>
-    <span class="post-count">博客全站共5.1k字</span>
+    <span class="post-count">博客全站共5.4k字</span>
   </div>
 
 

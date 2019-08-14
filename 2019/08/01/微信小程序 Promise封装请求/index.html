@@ -11,7 +11,20 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="theme-color" content="#222">
-
+<script>
+    (function () {
+        if ('') {
+            if (prompt('请输入文章密码') !== '') {
+                alert('密码错误！');
+                if (history.length === 1) {
+                    location.replace("http://xxxxxxx.xxx"); // 这里替换成你的首页
+                } else {
+                    history.back();
+                }
+            }
+        }
+    })();
+</script>
 
 
 
@@ -68,7 +81,7 @@
 
 
 
-  <meta name="keywords" content="ES6,Javascript,">
+  <meta name="keywords" content="Javascript,ES6,">
 
 
 
@@ -80,7 +93,7 @@
 
 
 <meta name="description" content="本文主要介绍如何在微信小程序中封装wx.request请求，并对请求做出统一的处理。">
-<meta name="keywords" content="ES6,Javascript">
+<meta name="keywords" content="Javascript,ES6">
 <meta property="og:type" content="article">
 <meta property="og:title" content="微信小程序 Promise封装请求">
 <meta property="og:url" content="http://yoursite.com/2019/08/01/微信小程序 Promise封装请求/index.html">
@@ -407,9 +420,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/ES6/" rel="tag"># ES6</a>
-          
             <a href="/tags/Javascript/" rel="tag"># Javascript</a>
+          
+            <a href="/tags/ES6/" rel="tag"># ES6</a>
           
         </div>
       
@@ -507,7 +520,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -518,7 +531,7 @@
               
               <div class="site-state-item site-state-categories">
                 
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">分类</span>
                 
               </div>
@@ -529,7 +542,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -601,7 +614,7 @@
 
   <div class="theme-info">
     <div class="powered-by"></div>
-    <span class="post-count">博客全站共5.1k字</span>
+    <span class="post-count">博客全站共5.4k字</span>
   </div>
 
 
