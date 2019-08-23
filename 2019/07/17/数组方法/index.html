@@ -100,7 +100,7 @@
 <meta property="og:site_name" content="范二先生的博客">
 <meta property="og:description" content="本文主要总结一些在日常项目开发过程中的数组方法。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-08-12T05:38:33.987Z">
+<meta property="og:updated_time" content="2019-08-22T03:38:37.426Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数组方法">
 <meta name="twitter:description" content="本文主要总结一些在日常项目开发过程中的数组方法。">
@@ -380,9 +380,14 @@
 </li>
 <li><p>判断一个数组是否包含另一个数组</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">isContain(arr1,arr2)&#123;  </span><br><span class="line">    for (var i = arr2.length - 1; i &gt;= 0; i--) &#123;  </span><br><span class="line">        if(!arr1.includes(arr2[i]))&#123;  </span><br><span class="line">          return false;  </span><br><span class="line">        &#125;  </span><br><span class="line">    &#125;  </span><br><span class="line">    return true;  </span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
-
 </li>
 </ul>
+<ol start="5">
+<li><p>数组对象自定义字段名</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">let arr = [</span><br><span class="line">    CategoryId : 0,</span><br><span class="line">    Name : 顶级分类,</span><br><span class="line">    children : [</span><br><span class="line">      &#123;CategoryId : 1,Name : &quot;aaa&quot;,children : []&#125;,</span><br><span class="line">      &#123;CategoryId : 3,Name : &quot;bbb&quot;,children : []&#125;,</span><br><span class="line">      &#123;CategoryId : 3,Name : &quot;ccc&quot;,children : []&#125;,</span><br><span class="line">    ]</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line">resetTree (oldTree) &#123;      </span><br><span class="line">  let newTree = oldTree.map(item =&gt; &#123;</span><br><span class="line">    if (item.children) &#123;</span><br><span class="line">        return &#123;</span><br><span class="line">            ...item,</span><br><span class="line">            label: item.Name,</span><br><span class="line">            isDefaultExpanded: true,</span><br><span class="line">            id: item.CategoryId,</span><br><span class="line">            children: this.resetTree(item.children)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        return &#123;</span><br><span class="line">            ...item,</span><br><span class="line">            isDefaultExpanded: true,</span><br><span class="line">            label: item.Name,</span><br><span class="line">            id: item.CategoryId,</span><br><span class="line">        &#125;</span><br><span class="line">      </span><br><span class="line">    &#125;)</span><br><span class="line">  return newTree</span><br><span class="line">&#125;,</span><br><span class="line">let new = resetTree(arr);</span><br><span class="line">console.log(new);</span><br><span class="line"></span><br><span class="line">//返回新数组</span><br><span class="line">[</span><br><span class="line">    CategoryId : 0,</span><br><span class="line">    Name : 顶级分类,</span><br><span class="line">    label : 顶级分类,</span><br><span class="line">    children : [</span><br><span class="line">      &#123;CategoryId : 1,id : 1,Name : &quot;aaa&quot;,label : &quot;aaa&quot;,children : []&#125;,</span><br><span class="line">      &#123;CategoryId : 3,id : 1,Name : &quot;bbb&quot;,label : &quot;aaa&quot;,children : []&#125;,</span><br><span class="line">      &#123;CategoryId : 3,id : 1,Name : &quot;ccc&quot;,label : &quot;aaa&quot;,children : []&#125;,</span><br><span class="line">    ]</span><br><span class="line">];</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
 
       
     </div>
@@ -544,7 +549,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -555,7 +560,7 @@
               
               <div class="site-state-item site-state-categories">
                 
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">分类</span>
                 
               </div>
@@ -566,7 +571,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -638,7 +643,7 @@
 
   <div class="theme-info">
     <div class="powered-by"></div>
-    <span class="post-count">博客全站共5.4k字</span>
+    <span class="post-count">博客全站共6k字</span>
   </div>
 
 
