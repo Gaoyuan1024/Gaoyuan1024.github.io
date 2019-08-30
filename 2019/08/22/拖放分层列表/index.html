@@ -100,7 +100,7 @@
 <meta property="og:site_name" content="范二先生的博客">
 <meta property="og:description" content="一个简单的vue组件，用于创建可自定义项的可拖动列表, 通过将项目拖放进行重新排序。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-08-23T06:23:35.527Z">
+<meta property="og:updated_time" content="2019-08-30T09:33:43.197Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Vue拖放分层列表之vue-nestable">
 <meta name="twitter:description" content="一个简单的vue组件，用于创建可自定义项的可拖动列表, 通过将项目拖放进行重新排序。">
@@ -349,32 +349,21 @@
       
 
       
-        <ol>
-<li><p>演示地址</p>
-<p><code>vue-nestable</code>官网： <a href="https://rhwilr.github.io/vue-nestable/" target="_blank" rel="noopener">vue-nestable</a>.</p>
-<p><code>vue-nestable</code> github地址： <a href="https://github.com/rhwilr/vue-nestable" target="_blank" rel="noopener">vue-nestable</a>.</p>
-</li>
-</ol>
-<ol start="2">
-<li><p>安装插件：</p>
-<p>安装插件</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save vue-nestable</span><br></pre></td></tr></table></figure>
+        <h4 id="演示地址"><a href="#演示地址" class="headerlink" title="演示地址"></a>演示地址</h4><p>  <code>vue-nestable</code>官网： <a href="https://rhwilr.github.io/vue-nestable/" target="_blank" rel="noopener">vue-nestable</a>.</p>
+<p>  <code>vue-nestable</code> github地址： <a href="https://github.com/rhwilr/vue-nestable" target="_blank" rel="noopener">vue-nestable</a>.</p>
+<h4 id="安装插件"><a href="#安装插件" class="headerlink" title="安装插件"></a>安装插件</h4><p>  安装插件</p>
+<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save vue-nestable</span><br></pre></td></tr></table></figure></code></pre><p>  在main.js中引入组件</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">import Vue from &apos;vue&apos;</span><br><span class="line">import VueNestable from &apos;vue-nestable&apos;</span><br><span class="line"></span><br><span class="line">Vue.use(VueNestable)</span><br></pre></td></tr></table></figure>
 
-<p>在main.js中引入组件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">import Vue from &apos;vue&apos;</span><br><span class="line">import VueNestable from &apos;vue-nestable&apos;</span><br><span class="line"></span><br><span class="line">Vue.use(VueNestable)</span><br></pre></td></tr></table></figure>
+<p>  或按需导入组件</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">import &#123; VueNestable, VueNestableHandle &#125; from &apos;vue-nestable&apos;</span><br><span class="line"></span><br><span class="line">export default &#123;</span><br><span class="line">  components: &#123;</span><br><span class="line">    VueNestable,</span><br><span class="line">    VueNestableHandle</span><br><span class="line">  &#125;</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>或按需导入组件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">import &#123; VueNestable, VueNestableHandle &#125; from &apos;vue-nestable&apos;</span><br><span class="line"></span><br><span class="line">export default &#123;</span><br><span class="line">  components: &#123;</span><br><span class="line">    VueNestable,</span><br><span class="line">    VueNestableHandle</span><br><span class="line">  &#125;</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>页面引用：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line"></span><br><span class="line">  &lt;vue-nestable v-model=&quot;nestableItems&quot; @change=&apos;handleChange&apos;&gt;</span><br><span class="line">    &lt;vue-nestable-handle</span><br><span class="line">      slot-scope=&quot;&#123; item &#125;&quot;</span><br><span class="line">      :item=&quot;item&quot;&gt;</span><br><span class="line">      &#123;&#123; item.text &#125;&#125;</span><br><span class="line">    &lt;/vue-nestable-handle&gt;</span><br><span class="line">  &lt;/vue-nestable&gt;</span><br><span class="line"></span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script type=&quot;text/babel&quot;&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">  data () &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      nestableItems: [</span><br><span class="line">        &#123;</span><br><span class="line">          id: 0,</span><br><span class="line">          text: &apos;Andy&apos;</span><br><span class="line">        &#125;, &#123;</span><br><span class="line">          id: 1,</span><br><span class="line">          text: &apos;Harry&apos;,</span><br><span class="line">          children: [&#123;</span><br><span class="line">            id: 2,</span><br><span class="line">            text: &apos;David&apos;</span><br><span class="line">          &#125;]</span><br><span class="line">        &#125;, &#123;</span><br><span class="line">          id: 3,</span><br><span class="line">          text: &apos;Lisa&apos;</span><br><span class="line">        &#125;</span><br><span class="line">      ]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    handleChange(value, options)&#123;</span><br><span class="line">        console.log(value);   //返回被拖放的一项</span><br><span class="line">        console.log(options); //返回拖放后的数组列表</span><br><span class="line"></span><br><span class="line">        //... 处理返回的数据</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="页面引用"><a href="#页面引用" class="headerlink" title="页面引用"></a>页面引用</h4>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line"></span><br><span class="line">  &lt;vue-nestable v-model=&quot;nestableItems&quot; @change=&apos;handleChange&apos;&gt;</span><br><span class="line">    &lt;vue-nestable-handle</span><br><span class="line">      slot-scope=&quot;&#123; item &#125;&quot;</span><br><span class="line">      :item=&quot;item&quot;&gt;</span><br><span class="line">      &#123;&#123; item.text &#125;&#125;</span><br><span class="line">    &lt;/vue-nestable-handle&gt;</span><br><span class="line">  &lt;/vue-nestable&gt;</span><br><span class="line"></span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script type=&quot;text/babel&quot;&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">  data () &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      nestableItems: [</span><br><span class="line">        &#123;</span><br><span class="line">          id: 0,</span><br><span class="line">          text: &apos;Andy&apos;</span><br><span class="line">        &#125;, &#123;</span><br><span class="line">          id: 1,</span><br><span class="line">          text: &apos;Harry&apos;,</span><br><span class="line">          children: [&#123;</span><br><span class="line">            id: 2,</span><br><span class="line">            text: &apos;David&apos;</span><br><span class="line">          &#125;]</span><br><span class="line">        &#125;, &#123;</span><br><span class="line">          id: 3,</span><br><span class="line">          text: &apos;Lisa&apos;</span><br><span class="line">        &#125;</span><br><span class="line">      ]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    handleChange(value, options)&#123;</span><br><span class="line">        console.log(value);   //返回被拖放的一项</span><br><span class="line">        console.log(options); //返回拖放后的数组列表</span><br><span class="line"></span><br><span class="line">        //... 处理返回的数据</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
 
-<p>插件默认的数据结构为：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  id: &apos;&apos;,</span><br><span class="line">  text: &apos;&apos;,</span><br><span class="line">  children: []</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>  插件默认的数据结构为：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  id: &apos;&apos;,</span><br><span class="line">  text: &apos;&apos;,</span><br><span class="line">  children: []</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
-</li>
-</ol>
 
       
     </div>
@@ -522,8 +511,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -540,7 +538,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -608,6 +606,22 @@
       </section>
 
       
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#演示地址"><span class="nav-number">1.</span> <span class="nav-text">演示地址</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#安装插件"><span class="nav-number">2.</span> <span class="nav-text">安装插件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#页面引用"><span class="nav-number">3.</span> <span class="nav-text">页面引用</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
 
       
 
@@ -634,7 +648,7 @@
 
   <div class="theme-info">
     <div class="powered-by"></div>
-    <span class="post-count">博客全站共6k字</span>
+    <span class="post-count">博客全站共8.9k字</span>
   </div>
 
 
@@ -826,5 +840,9 @@
 
   
 
+
+  <!-- 代码块复制功能 -->
+  <script type="text/javascript" src="/js/src/clipboard.min.js"></script>  
+  <script type="text/javascript" src="/js/src/clipboard-use.js"></script>
 <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false});</script></body>
 </html>
