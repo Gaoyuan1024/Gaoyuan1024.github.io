@@ -100,12 +100,12 @@
 <meta property="og:site_name" content="范二先生的博客">
 <meta property="og:description" content="本文主要如何在Vue中使用iView的 Checkbox多选框实现权限分配功能。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/2019/08/15/Vue引用iView%20多选框实现权限分配/%27../image/powers.jpg%27">
-<meta property="og:updated_time" content="2019-08-30T08:50:44.460Z">
+<meta property="og:image" content="http://yoursite.com/2019/08/15/Vue引用iView%20多选框实现权限分配/%27https://github.com/Gaoyuan1024/Gaoyuan1024.github.io/blob/master/image/powers.jpg%27">
+<meta property="og:updated_time" content="2019-08-30T08:55:37.831Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Vue引用iView Checkbox多选框实现权限分配">
 <meta name="twitter:description" content="本文主要如何在Vue中使用iView的 Checkbox多选框实现权限分配功能。">
-<meta name="twitter:image" content="http://yoursite.com/2019/08/15/Vue引用iView%20多选框实现权限分配/%27../image/powers.jpg%27">
+<meta name="twitter:image" content="http://yoursite.com/2019/08/15/Vue引用iView%20多选框实现权限分配/%27https://github.com/Gaoyuan1024/Gaoyuan1024.github.io/blob/master/image/powers.jpg%27">
 
 
 
@@ -354,7 +354,7 @@
         <ol>
 <li>图示</li>
 </ol>
-<p><img src="'../image/powers.jpg'" alt="Alt text" title="权限分配"></p>
+<p><img src="'https://github.com/Gaoyuan1024/Gaoyuan1024.github.io/blob/master/image/powers.jpg'" alt="Alt text" title="权限分配"></p>
 <ol start="2">
 <li><p>html部分代码 ，使用iView 的 Checkbox多选框布局（Css样式根据喜好，自由发挥）</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&lt;div v-for=&quot;(item,index) of powerList&quot; :key=&quot;index&quot; class=&quot;check-box-group&quot;&gt;</span><br><span class="line">  &lt;div class=&quot;check-box-div&quot;&gt;</span><br><span class="line">    &lt;Checkbox</span><br><span class="line">      :disabled=&apos;isread&apos;</span><br><span class="line">      :indeterminate=&quot;item.indeterminate&quot;</span><br><span class="line">      :value=&quot;item.checkAll&quot;</span><br><span class="line">      @click.native=&quot;handleCheckAll(index)&quot;&gt;&lt;span&gt;&#123;&#123;item.Name&#125;&#125;&lt;/span&gt;&lt;/Checkbox&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">  &lt;div class=&quot;check-box-item&quot;&gt;</span><br><span class="line">    &lt;div v-for=&quot;(i,x) of item.Items&quot; :key=&quot;x&quot; class=&quot;check-box-list&quot;&gt;</span><br><span class="line">        &lt;CheckboxGroup v-model=&quot;checkAllGroup&quot; @on-change=&quot;checkAllGroupChange(item,index)&quot;&gt;</span><br><span class="line">            &lt;Checkbox :label=&quot;i.Value&quot; :disabled=&apos;isread&apos;&gt;&lt;span&gt;&#123;&#123;i.Name&#125;&#125;&lt;/span&gt;&lt;/Checkbox&gt;</span><br><span class="line">        &lt;/CheckboxGroup&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">export default &#123;</span><br><span class="line">  data()&#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      isread: true,   //是否只读</span><br><span class="line">      powerList: [],  //权限列表</span><br><span class="line">      checkAllGroup: [],  //已选权限</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
