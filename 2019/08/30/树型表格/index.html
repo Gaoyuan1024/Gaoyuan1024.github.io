@@ -100,7 +100,7 @@
 <meta property="og:site_name" content="范二先生的博客">
 <meta property="og:description" content="基于vue和iview组件库的树型表格  主要使用了 iview(checkbox组件,icon组件,button组件) 同时部分表格渲染模仿iview表格 支持iview">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-09-11T07:42:54.818Z">
+<meta property="og:updated_time" content="2019-09-11T07:44:45.697Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="基于vue和优秀的iView组件库的树型表格(tree-table&#x2F;tree-grid)">
 <meta name="twitter:description" content="基于vue和iview组件库的树型表格  主要使用了 iview(checkbox组件,icon组件,button组件) 同时部分表格渲染模仿iview表格 支持iview">
@@ -373,6 +373,7 @@
     }
 
     function download() {
+        console.log(456)
         var url = 'https://github.com/Gaoyuan1024/Gaoyuan1024.github.io/blob/master/vue/treeGild.vue' // demo图片
         ajax(url, function(xhr) {
             var filename = 'xxx.' + url.replace(/(.*\.)/, '') // 自定义文件名+后缀
