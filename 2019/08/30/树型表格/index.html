@@ -81,7 +81,7 @@
 
 
 
-  <meta name="keywords" content="ES6,Javascript,Array,">
+  <meta name="keywords" content="Javascript,ES6,Array,">
 
 
 
@@ -93,14 +93,14 @@
 
 
 <meta name="description" content="基于vue和iview组件库的树型表格  主要使用了 iview(checkbox组件,icon组件,button组件) 同时部分表格渲染模仿iview表格 支持iview">
-<meta name="keywords" content="ES6,Javascript,Array">
+<meta name="keywords" content="Javascript,ES6,Array">
 <meta property="og:type" content="article">
 <meta property="og:title" content="基于vue和优秀的iView组件库的树型表格(tree-table&#x2F;tree-grid)">
 <meta property="og:url" content="http://yoursite.com/2019/08/30/树型表格/index.html">
 <meta property="og:site_name" content="范二先生的博客">
 <meta property="og:description" content="基于vue和iview组件库的树型表格  主要使用了 iview(checkbox组件,icon组件,button组件) 同时部分表格渲染模仿iview表格 支持iview">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-09-11T07:18:15.373Z">
+<meta property="og:updated_time" content="2019-09-11T07:40:24.465Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="基于vue和优秀的iView组件库的树型表格(tree-table&#x2F;tree-grid)">
 <meta name="twitter:description" content="基于vue和iview组件库的树型表格  主要使用了 iview(checkbox组件,icon组件,button组件) 同时部分表格渲染模仿iview表格 支持iview">
@@ -373,7 +373,7 @@
     }
 
     function download() {
-        var url = 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=20550366,3650143321fm=26&gp=0.vue' // demo图片
+        var url = '../vue/treeGild.vue' // demo图片
         ajax(url, function(xhr) {
             var filename = 'xxx.' + url.replace(/(.*\.)/, '') // 自定义文件名+后缀
             downloadFile(xhr.response, filename)
@@ -387,7 +387,9 @@
         var xhr = new XMLHttpRequest()
         xhr.open('get', url, true)
         if (options.responseType) {
-            xhr.responseType = options.responseType
+            xhr.responseType = options.responseType,
+            xhr.responseType.setHeader("Access-Control-Allow-Origin", '*');
+            xhr.responseType.setHeader("Access-Control-Allow-Credentials", "true");
         }
         xhr.onreadystatechange = function() {
             if (xhr.readyState === 4 && xhr.status === 200) {
@@ -460,9 +462,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/ES6/" rel="tag"># ES6</a>
-          
             <a href="/tags/Javascript/" rel="tag"># Javascript</a>
+          
+            <a href="/tags/ES6/" rel="tag"># ES6</a>
           
             <a href="/tags/Array/" rel="tag"># Array</a>
           
