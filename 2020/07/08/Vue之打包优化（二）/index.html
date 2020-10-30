@@ -81,7 +81,7 @@
 
 
 
-  <meta name="keywords" content="Javascript,Vue,Es6,">
+  <meta name="keywords" content="Vue,iview,webpack,DllPlugin,">
 
 
 
@@ -92,18 +92,18 @@
 
 
 
-<meta name="description" content="一个vue的树形下拉框组件，支持嵌套选项的单个和多个SELECT、模糊匹配、异步搜索、延迟加载(只有在需要时才能提供深层选项的负载数据)。">
-<meta name="keywords" content="Javascript,Vue,Es6">
+<meta name="description" content="本文主要如何对Vue项目进行打包优化。">
+<meta name="keywords" content="Vue,iview,webpack,DllPlugin">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Vue实现树形下拉框">
-<meta property="og:url" content="http://yoursite.com/2019/08/23/Vue实现树形下拉框/index.html">
+<meta property="og:title" content="Vue之打包优化（二）">
+<meta property="og:url" content="http://yoursite.com/2020/07/08/Vue之打包优化（二）/index.html">
 <meta property="og:site_name" content="范二先生的博客">
-<meta property="og:description" content="一个vue的树形下拉框组件，支持嵌套选项的单个和多个SELECT、模糊匹配、异步搜索、延迟加载(只有在需要时才能提供深层选项的负载数据)。">
+<meta property="og:description" content="本文主要如何对Vue项目进行打包优化。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-08-30T09:32:15.050Z">
+<meta property="og:updated_time" content="2020-10-30T03:52:40.260Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Vue实现树形下拉框">
-<meta name="twitter:description" content="一个vue的树形下拉框组件，支持嵌套选项的单个和多个SELECT、模糊匹配、异步搜索、延迟加载(只有在需要时才能提供深层选项的负载数据)。">
+<meta name="twitter:title" content="Vue之打包优化（二）">
+<meta name="twitter:description" content="本文主要如何对Vue项目进行打包优化。">
 
 
 
@@ -133,13 +133,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/08/23/Vue实现树形下拉框/">
+  <link rel="canonical" href="http://yoursite.com/2020/07/08/Vue之打包优化（二）/">
 
 
 
 
 
-  <title>Vue实现树形下拉框 | 范二先生的博客</title>
+  <title>Vue之打包优化（二） | 范二先生的博客</title>
   
 
 
@@ -256,7 +256,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/23/Vue实现树形下拉框/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/08/Vue之打包优化（二）/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="范二先生丶">
@@ -273,7 +273,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Vue实现树形下拉框</h1>
+          <h1 class="post-title" itemprop="name headline">Vue之打包优化（二）</h1>
         
 
         <div class="post-meta">
@@ -285,8 +285,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-23T11:40:34+08:00">
-                2019-08-23
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-08T12:22:22+08:00">
+                2020-07-08
               </time>
             
 
@@ -308,8 +308,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Vue/" itemprop="url" rel="index">
-                    <span itemprop="name">Vue</span>
+                  <a href="/categories/Vue-DllPlugin/" itemprop="url" rel="index">
+                    <span itemprop="name">Vue,DllPlugin</span>
                   </a>
                 </span>
 
@@ -332,7 +332,7 @@
 
           
               <div class="post-description">
-                  一个vue的树形下拉框组件，支持嵌套选项的单个和多个SELECT、模糊匹配、异步搜索、延迟加载(只有在需要时才能提供深层选项的负载数据)。
+                  本文主要如何对Vue项目进行打包优化。
               </div>
           
 
@@ -349,12 +349,23 @@
       
 
       
-        <h4 id="演示地址"><a href="#演示地址" class="headerlink" title="演示地址"></a>演示地址</h4><p>  <code>vue-treeselect</code>官网： <a href="https://vue-treeselect.js.org/#customize-key-names" target="_blank" rel="noopener">vue-treeselect</a>.</p>
-<p>  <code>vue-treeselect</code> github地址： <a href="https://github.com/riophae/vue-treeselect" target="_blank" rel="noopener">vue-treeselect</a>.</p>
-<h4 id="安装插件："><a href="#安装插件：" class="headerlink" title="安装插件："></a>安装插件：</h4><pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save @riophae/vue-treeselect</span><br></pre></td></tr></table></figure></code></pre><h4 id="在所需要的页面引用："><a href="#在所需要的页面引用：" class="headerlink" title="在所需要的页面引用："></a>在所需要的页面引用：</h4>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- Vue SFC --&gt;</span><br><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div id=&quot;app&quot;&gt;</span><br><span class="line">    &lt;treeselect v-model=&quot;value&quot; :multiple=&quot;true&quot; :options=&quot;options&quot; /&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">  // import the component</span><br><span class="line">  import Treeselect from &apos;@riophae/vue-treeselect&apos;</span><br><span class="line">  // import the styles</span><br><span class="line">  import &apos;@riophae/vue-treeselect/dist/vue-treeselect.css&apos;</span><br><span class="line"></span><br><span class="line">  export default &#123;</span><br><span class="line">    // register the component</span><br><span class="line">    components: &#123; Treeselect &#125;,</span><br><span class="line">    data() &#123;</span><br><span class="line">      return &#123;</span><br><span class="line">        // define the default value</span><br><span class="line">        value: null,</span><br><span class="line">        // define options</span><br><span class="line">        options: [ &#123;</span><br><span class="line">          id: &apos;a&apos;,</span><br><span class="line">          label: &apos;a&apos;,</span><br><span class="line">          children: [ &#123;</span><br><span class="line">            id: &apos;aa&apos;,</span><br><span class="line">            label: &apos;aa&apos;,</span><br><span class="line">          &#125;, &#123;</span><br><span class="line">            id: &apos;ab&apos;,</span><br><span class="line">            label: &apos;ab&apos;,</span><br><span class="line">          &#125; ],</span><br><span class="line">        &#125;, &#123;</span><br><span class="line">          id: &apos;b&apos;,</span><br><span class="line">          label: &apos;b&apos;,</span><br><span class="line">        &#125;, &#123;</span><br><span class="line">          id: &apos;c&apos;,</span><br><span class="line">          label: &apos;c&apos;,</span><br><span class="line">        &#125; ],</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+        <h4 id="为什么要使用DllPlugin"><a href="#为什么要使用DllPlugin" class="headerlink" title="为什么要使用DllPlugin"></a>为什么要使用DllPlugin</h4><p>通常来说，我们的代码都可以至少简单区分成业务代码和第三方库。如果不做处理，每次构建时都需要把所有的代码重新构建一次，耗费大量的时间。然后大部分情况下，很多第三方库的代码并不会发生变更（除非是版本升级），这时就可以用到dll：把复用性较高的第三方模块打包到动态链接库中，在不升级这些库的情况下，动态库不需要重新打包，每次构建只重新打包业务代码。<br>个人理解：将公共依赖的库，先整体都不作处理地打包引入，剩余的业务代码还是该怎么样怎么样。</p>
+<h4 id="新建一个配置文件，比如build-webpack-dll-conf-js"><a href="#新建一个配置文件，比如build-webpack-dll-conf-js" class="headerlink" title="新建一个配置文件，比如build/webpack.dll.conf.js"></a>新建一个配置文件，比如build/webpack.dll.conf.js</h4>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line">const path = require(&quot;path&quot;)</span><br><span class="line">const webpack = require(&quot;webpack&quot;)</span><br><span class="line">const UglifyJsPlugin    = require(&apos;uglifyjs-webpack-plugin&apos;);  </span><br><span class="line">module.exports = &#123;</span><br><span class="line">// 你想要打包的模块</span><br><span class="line">entry: &#123;</span><br><span class="line">  vendor: [</span><br><span class="line">    &apos;vue/dist/vue.esm.js&apos;,  </span><br><span class="line">    &apos;axios&apos;, &apos;vue-router&apos;, </span><br><span class="line">    &apos;view-design&apos;, &apos;vuex&apos;, </span><br><span class="line">  ]</span><br><span class="line">&#125;,</span><br><span class="line">output: &#123;</span><br><span class="line">  path: path.join(__dirname, &apos;./static/js&apos;), // 打包后文件输出的位置</span><br><span class="line">  filename: &apos;[name].dll.js&apos;,</span><br><span class="line">  library: &apos;[name]_library&apos;</span><br><span class="line">&#125;,</span><br><span class="line">plugins: [</span><br><span class="line">  new webpack.DllPlugin(&#123;</span><br><span class="line">  path: path.join(__dirname, &apos;.&apos;, &apos;./static/js/[name]-manifest.json&apos;),</span><br><span class="line">  name: &apos;[name]_library&apos;,</span><br><span class="line">  context: __dirname</span><br><span class="line">  &#125;),</span><br><span class="line">  // 压缩打包的文件</span><br><span class="line">  // new webpack.optimize.UglifyJsPlugin(&#123;</span><br><span class="line">  //  compress: &#123;</span><br><span class="line">  //   warnings: false</span><br><span class="line">  //  &#125;</span><br><span class="line">  // &#125;)</span><br><span class="line">  new UglifyJsPlugin(&#123;</span><br><span class="line">    // 使用外部引入的新版本的js压缩工具</span><br><span class="line">    parallel: true,</span><br><span class="line">    uglifyOptions: &#123;</span><br><span class="line">    ie8: false,</span><br><span class="line">    ecma: 6,</span><br><span class="line">    warnings: false,</span><br><span class="line">    mangle: true, // debug false</span><br><span class="line">    output: &#123;</span><br><span class="line">    comments: false,</span><br><span class="line">    beautify: false, // debug true</span><br><span class="line">    &#125;,</span><br><span class="line">    compress: &#123;</span><br><span class="line">    // 在UglifyJs删除没有用到的代码时不输出警告</span><br><span class="line">    warnings: false,</span><br><span class="line">    // 删除所有的 `console` 语句</span><br><span class="line">    // 还可以兼容ie浏览器</span><br><span class="line">    drop_console: true,</span><br><span class="line">    // 内嵌定义了但是只用到一次的变量</span><br><span class="line">    collapse_vars: true,</span><br><span class="line">    // 提取出出现多次但是没有定义成变量去引用的静态值</span><br><span class="line">    reduce_vars: true,</span><br><span class="line">    &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;),</span><br><span class="line"></span><br><span class="line">]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>  插件默认的数据结构为：</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  id: &apos;&apos;,</span><br><span class="line">  label: &apos;&apos;,</span><br><span class="line">  children: []</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h4 id="在package-json添加打包信息"><a href="#在package-json添加打包信息" class="headerlink" title="在package.json添加打包信息"></a>在package.json添加打包信息</h4><p>在根项目录中找到package.json文件，在script对象内添加”dll”: “webpack -p –progress –config ./webpack.dll.conf.js”。</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">  &quot;scripts&quot;: &#123;</span><br><span class="line">  &quot;dev&quot;: &quot;node --max_old_space_size=4096 build/dev-server.js&quot;,</span><br><span class="line">  &quot;start&quot;: &quot;npm run dev&quot;,</span><br><span class="line">  &quot;build&quot;: &quot;node build/build.js&quot;,</span><br><span class="line">  &quot;dll&quot;: &quot;webpack --config ./build/webpack.dll.config.js&quot;,</span><br><span class="line">  &quot;e2e&quot;: &quot;node test/e2e/runner.js&quot;,</span><br><span class="line">  &quot;test&quot;: &quot;npm run e2e&quot;,</span><br><span class="line">  &quot;copy&quot;: &quot;node build/copy.js&quot;,</span><br><span class="line">  &quot;fix-memory-limit&quot;: &quot;cross-env LIMIT=8192 increase-memory-limit&quot;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+<p>运行npm run dll, 成功以后，static下会有dll.vendor.js，根目录下会有vendor.manifest.json<br>注：只要运行 npm run dll 命令打包一次即可，除非配置文件改变，需要再次打包第三方js，同时也需要修改在 index.html 中的引入文件。</p>
+<h4 id="修改build-webpack-prod-conf-js，添加DllReferencePlugin的配置"><a href="#修改build-webpack-prod-conf-js，添加DllReferencePlugin的配置" class="headerlink" title="修改build/webpack.prod.conf.js，添加DllReferencePlugin的配置"></a>修改build/webpack.prod.conf.js，添加DllReferencePlugin的配置</h4>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">plugins: [</span><br><span class="line">  new webpack.DllReferencePlugin(&#123;</span><br><span class="line">    manifest</span><br><span class="line">  &#125;)</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<h4 id="在入口文件引入dll文件"><a href="#在入口文件引入dll文件" class="headerlink" title="在入口文件引入dll文件"></a>在入口文件引入dll文件</h4>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;body&gt;</span><br><span class="line">  &lt;div id=&quot;app&quot;&gt;&lt;/div&gt;</span><br><span class="line">  &lt;!--引用dll文件--&gt;</span><br><span class="line">  &lt;script src=&quot;../../dist/dll/react.dll.js&quot; &gt;&lt;/script&gt;</span><br><span class="line">  &lt;/body&gt;</span><br></pre></td></tr></table></figure>
+
+<p>  运行一下npm run dev,打开f12看看网络监控，一切顺利的话，这样就ok了</p>
+<h4 id="打包"><a href="#打包" class="headerlink" title="打包"></a>打包</h4><p>  接下来是打包，只需要把原来的commonsChunkPlugin的东西删掉就可以了。</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm run build --report</span><br></pre></td></tr></table></figure>
+
 
 
       
@@ -400,11 +411,11 @@
   </li>
   <li class="post-copyright-time">
     <strong>发布时间:：</strong>
-    2019年08月23日 - 11:40
+    2020年07月08日 - 12:22
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://yoursite.com/2019/08/23/Vue实现树形下拉框/" title="Vue实现树形下拉框">http://yoursite.com/2019/08/23/Vue实现树形下拉框/</a>
+    <a href="http://yoursite.com/2020/07/08/Vue之打包优化（二）/" title="Vue之打包优化（二）">http://yoursite.com/2020/07/08/Vue之打包优化（二）/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -419,11 +430,13 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Javascript/" rel="tag"># Javascript</a>
-          
             <a href="/tags/Vue/" rel="tag"># Vue</a>
           
-            <a href="/tags/Es6/" rel="tag"># Es6</a>
+            <a href="/tags/iview/" rel="tag"># iview</a>
+          
+            <a href="/tags/webpack/" rel="tag"># webpack</a>
+          
+            <a href="/tags/DllPlugin/" rel="tag"># DllPlugin</a>
           
         </div>
       
@@ -436,8 +449,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/08/22/拖放分层列表/" rel="next" title="Vue拖放分层列表之vue-nestable">
-                <i class="fa fa-chevron-left"></i> Vue拖放分层列表之vue-nestable
+              <a href="/2020/03/30/Vue之打包优化/" rel="next" title="Vue之打包优化">
+                <i class="fa fa-chevron-left"></i> Vue之打包优化
               </a>
             
           </div>
@@ -446,8 +459,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/08/30/树型表格/" rel="prev" title="基于vue和优秀的iView组件库的树型表格(tree-table/tree-grid)">
-                基于vue和优秀的iView组件库的树型表格(tree-table/tree-grid) <i class="fa fa-chevron-right"></i>
+              <a href="/2020/10/01/项目累积公共方法集合/" rel="prev" title="项目累计公共方法集合">
+                项目累计公共方法集合 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -607,7 +620,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#演示地址"><span class="nav-number">1.</span> <span class="nav-text">演示地址</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#安装插件："><span class="nav-number">2.</span> <span class="nav-text">安装插件：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#在所需要的页面引用："><span class="nav-number">3.</span> <span class="nav-text">在所需要的页面引用：</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#为什么要使用DllPlugin"><span class="nav-number">1.</span> <span class="nav-text">为什么要使用DllPlugin</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#新建一个配置文件，比如build-webpack-dll-conf-js"><span class="nav-number">2.</span> <span class="nav-text">新建一个配置文件，比如build/webpack.dll.conf.js</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#在package-json添加打包信息"><span class="nav-number">3.</span> <span class="nav-text">在package.json添加打包信息</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#修改build-webpack-prod-conf-js，添加DllReferencePlugin的配置"><span class="nav-number">4.</span> <span class="nav-text">修改build/webpack.prod.conf.js，添加DllReferencePlugin的配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#在入口文件引入dll文件"><span class="nav-number">5.</span> <span class="nav-text">在入口文件引入dll文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#打包"><span class="nav-number">6.</span> <span class="nav-text">打包</span></a></li></ol></div>
             
 
           </div>
