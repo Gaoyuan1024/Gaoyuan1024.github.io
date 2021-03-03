@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+<script>
+    (function () {
+        if ('') {
+            if (prompt('请输入文章密码') !== '') {
+                alert('密码错误！');
+                if (history.length === 1) {
+                    location.replace("https://gaoyuan1024.github.io"); // 这里替换成你的首页
+                } else {
+                    history.back();
+                }
+            }
+        }
+    })();
+</script>
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Vue,iview,Checkbox,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="本文主要如何在Vue中使用iView的 Checkbox多选框实现权限分配功能。">
+<meta name="keywords" content="Vue,iview,Checkbox">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vue引用iView Checkbox多选框实现权限分配">
+<meta property="og:url" content="http://yoursite.com/2019/08/15/Authority_Assignment/index.html">
+<meta property="og:site_name" content="范二先生的博客">
+<meta property="og:description" content="本文主要如何在Vue中使用iView的 Checkbox多选框实现权限分配功能。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://thumbnail0.baidupcs.com/thumbnail/fc704aed4b217ab96f9367816e04ea31?fid=53604728-250528-223710765199313&rt=pr&sign=FDTAER-DCb740ccc5511e5e8fedcff06b081203-ilc%2bOXKGxM5JUSYllWy8ZdRdQj8%3d&expires=8h&chkbd=0&chkv=0&dp-logid=6321729559116063444&dp-callid=0&time=1569819600&size=c1920_u1080&quality=90&vuk=53604728&ft=image&autopolicy=1">
+<meta property="og:updated_time" content="2021-03-03T01:28:41.627Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Vue引用iView Checkbox多选框实现权限分配">
+<meta name="twitter:description" content="本文主要如何在Vue中使用iView的 Checkbox多选框实现权限分配功能。">
+<meta name="twitter:image" content="https://thumbnail0.baidupcs.com/thumbnail/fc704aed4b217ab96f9367816e04ea31?fid=53604728-250528-223710765199313&rt=pr&sign=FDTAER-DCb740ccc5511e5e8fedcff06b081203-ilc%2bOXKGxM5JUSYllWy8ZdRdQj8%3d&expires=8h&chkbd=0&chkv=0&dp-logid=6321729559116063444&dp-callid=0&time=1569819600&size=c1920_u1080&quality=90&vuk=53604728&ft=image&autopolicy=1">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/08/15/Authority_Assignment/">
+
+
+
+
+
+  <title>Vue引用iView Checkbox多选框实现权限分配 | 范二先生的博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">范二先生的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/15/Authority_Assignment/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="范二先生丶">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="范二先生的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Vue引用iView Checkbox多选框实现权限分配</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-15T11:48:34+08:00">
+                2019-08-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iview/" itemprop="url" rel="index">
+                    <span itemprop="name">iview</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+              <div class="post-description">
+                  本文主要如何在Vue中使用iView的 Checkbox多选框实现权限分配功能。
+              </div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>效果图：<br><img src="https://thumbnail0.baidupcs.com/thumbnail/fc704aed4b217ab96f9367816e04ea31?fid=53604728-250528-223710765199313&rt=pr&sign=FDTAER-DCb740ccc5511e5e8fedcff06b081203-ilc%2bOXKGxM5JUSYllWy8ZdRdQj8%3d&expires=8h&chkbd=0&chkv=0&dp-logid=6321729559116063444&dp-callid=0&time=1569819600&size=c1920_u1080&quality=90&vuk=53604728&ft=image&autopolicy=1"></p>
+<p>html部分代码 ，使用iView 的 Checkbox多选框布局（Css样式根据喜好，自由发挥）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&lt;div v-for=&quot;(item,index) of powerList&quot; :key=&quot;index&quot; class=&quot;check-box-group&quot;&gt;</span><br><span class="line">  &lt;div class=&quot;check-box-div&quot;&gt;</span><br><span class="line">    &lt;Checkbox</span><br><span class="line">      :disabled=&apos;isread&apos;</span><br><span class="line">      :indeterminate=&quot;item.indeterminate&quot;</span><br><span class="line">      :value=&quot;item.checkAll&quot;</span><br><span class="line">      @click.native=&quot;handleCheckAll(index)&quot;&gt;&lt;span&gt;&#123;&#123;item.Name&#125;&#125;&lt;/span&gt;&lt;/Checkbox&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">  &lt;div class=&quot;check-box-item&quot;&gt;</span><br><span class="line">    &lt;div v-for=&quot;(i,x) of item.Items&quot; :key=&quot;x&quot; class=&quot;check-box-list&quot;&gt;</span><br><span class="line">        &lt;CheckboxGroup v-model=&quot;checkAllGroup&quot; @on-change=&quot;checkAllGroupChange(item,index)&quot;&gt;</span><br><span class="line">            &lt;Checkbox :label=&quot;i.Value&quot; :disabled=&apos;isread&apos;&gt;&lt;span&gt;&#123;&#123;i.Name&#125;&#125;&lt;/span&gt;&lt;/Checkbox&gt;</span><br><span class="line">        &lt;/CheckboxGroup&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">export default &#123;</span><br><span class="line">  data()&#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      isread: true,   //是否只读</span><br><span class="line">      powerList: [],  //权限列表</span><br><span class="line">      checkAllGroup: [],  //已选权限</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Js部分代码 (具体逻辑见代码注释)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br></pre></td><td class="code"><pre><span class="line">/** 获取权限列表 (请求详情见自定义Axios封装请求) **/</span><br><span class="line">async handleGetpowerList(list)&#123;</span><br><span class="line">  let result = await GetPermissions(&#123;</span><br><span class="line">  &#125;);</span><br><span class="line">    let &#123; ResultCode,Tag &#125; = result.data;</span><br><span class="line">    if(ResultCode === 200)&#123;</span><br><span class="line">      const Tags= this.resetTree (Tag);</span><br><span class="line">      this.powerList =  Tags;</span><br><span class="line">    &#125;else &#123;</span><br><span class="line">      this.powerList = [];</span><br><span class="line">  &#125;</span><br><span class="line">  if(list !== null) &#123;</span><br><span class="line">    this.handleLookPower(list);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;,</span><br><span class="line">/** 改变对象结构 **/</span><br><span class="line">resetTree(oldTree) &#123;      </span><br><span class="line">  let newTree = oldTree.map(item =&gt; &#123;</span><br><span class="line">      return &#123;</span><br><span class="line">        ...item,</span><br><span class="line">        indeterminate: true,  //</span><br><span class="line">        label: false,</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">  return newTree</span><br><span class="line">&#125;,</span><br><span class="line">/** 默认已选权限 </span><br><span class="line">(这里后端只给到一个已选权限的数组，所以我前端只能自己做处理了，能自己动手的绝不求别人，是我作为程序员最厚的尊严)</span><br><span class="line">  * 大概思路：</span><br><span class="line">  * 1. 先根据id找出相对应的父权限目录，</span><br><span class="line">  * 2. 将过滤出的id值愉父目录下的所有子权限对比，判断已选权限是否包含对应父目录下的所有选项</span><br><span class="line">  如果为true，给全选样式</span><br><span class="line">  如果为false，则不给全选样式。</span><br><span class="line">**/</span><br><span class="line">  handleLookPower(list)&#123;</span><br><span class="line">    let result = list.split(&apos;,&apos;),arrlist = [];</span><br><span class="line">    result.map((item) =&gt; &#123;</span><br><span class="line">      arrlist.push(Number(item))</span><br><span class="line">    &#125;)      </span><br><span class="line">    this.checkAllGroup = arrlist;</span><br><span class="line">    for(let i=0;i&lt;result.length;i++)&#123;</span><br><span class="line">      let as = result[i].substring(0, 2);</span><br><span class="line">      for(let j=0;j&lt;this.powerList.length;j++) &#123;</span><br><span class="line">        if(as == this.powerList[j].Value)&#123;</span><br><span class="line">          let asList = this.foreachs(this.powerList[j].Items)</span><br><span class="line">          let isAll = this.isContain(arrlist,asList);</span><br><span class="line">          if(isAll)&#123;</span><br><span class="line">            this.powerList[j].indeterminate = false;</span><br><span class="line">            this.powerList[j].checkAll = true;</span><br><span class="line">          &#125;else &#123;</span><br><span class="line">            this.powerList[j].indeterminate = true;</span><br><span class="line">            this.powerList[j].checkAll = false;</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  foreachs(arr)&#123;</span><br><span class="line">    let arrlist = [];</span><br><span class="line">    arr.map((item) =&gt; &#123;</span><br><span class="line">      arrlist.push(item.Value)</span><br><span class="line">    &#125;) </span><br><span class="line">    return arrlist;</span><br><span class="line">  &#125;,</span><br><span class="line">  //判断一个数组是否包含另一个数组</span><br><span class="line">  isContain(arr1,arr2)&#123;  </span><br><span class="line">      for (var i = arr2.length - 1; i &gt;= 0; i--) &#123;  </span><br><span class="line">          if(!arr1.includes(arr2[i]))&#123;  </span><br><span class="line">              return false;  </span><br><span class="line">          &#125;  </span><br><span class="line">      &#125;  </span><br><span class="line">      return true;  </span><br><span class="line">  &#125;,</span><br><span class="line">/** 全选</span><br><span class="line">  * 判断是否为只读，是则不允许操作，否则可以操作</span><br><span class="line">  * 重置 当前indeterminate(只负责样式控制) 状态，根据当前checkAll判断</span><br><span class="line">  如果为true，则价格当前所有子选项选中，并将选项id加入checkAllGroup数组</span><br><span class="line">  如果为false，则将当前已选中的选项做过滤去重处理。</span><br><span class="line">**/</span><br><span class="line">handleCheckAll (index) &#123;</span><br><span class="line">  if(!this.isread)&#123;</span><br><span class="line">    if (!this.powerList[index].indeterminate) &#123;</span><br><span class="line">        this.powerList[index].checkAll = false;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        this.powerList[index].checkAll = !this.powerList[index].checkAll;</span><br><span class="line">    &#125;</span><br><span class="line">    this.powerList[index].indeterminate = !this.powerList[index].indeterminate;</span><br><span class="line">    let children = this.powerList[index].Items,arr = [];</span><br><span class="line">    if (this.powerList[index].checkAll) &#123;</span><br><span class="line">        children.map(item =&gt;&#123;</span><br><span class="line">          this.checkAllGroup.push(item.Value)</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        children.map(item =&gt;&#123;</span><br><span class="line">          arr.push(item.Value)</span><br><span class="line">        &#125;)</span><br><span class="line">      this.checkAllGroup = this.checkAllGroup.filter(el =&gt; !arr.includes(el));</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;,</span><br><span class="line">/** 选中</span><br><span class="line">  * map方法取出当前选项所有子选项</span><br><span class="line">  * 封装一个subset()方法，将所有已选项与当前所有子选项对比,</span><br><span class="line">  如果为true，则所有已选项是当前所有子选项的子集, 给全选样式</span><br><span class="line">  如果为false，则所有已选项不是当前所有子选项的子集, 不给全选样式</span><br><span class="line">**/</span><br><span class="line">checkAllGroupChange (item,index) &#123;        </span><br><span class="line">  let data = this.checkAllGroup,children = item.Items,arr = [];</span><br><span class="line">    children.map(item =&gt; &#123;</span><br><span class="line">      arr.push(item.Value);</span><br><span class="line">    &#125;)</span><br><span class="line">    let isflag = this.subset(data,arr)   // 调用subset()方法</span><br><span class="line">    if (isflag) &#123;</span><br><span class="line">        this.powerList[index].indeterminate = false;</span><br><span class="line">        this.powerList[index].checkAll = true;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        this.powerList[index].indeterminate = true;</span><br><span class="line">        this.powerList[index].checkAll = false;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;,</span><br><span class="line">// 定义一个方法判断B数组是否为A数组的子集(有重复、无序)</span><br><span class="line">subset(A,B)&#123;</span><br><span class="line">  A = A.slice();</span><br><span class="line">  for(var i=0, len=B.length; i&lt;len; i++)&#123;</span><br><span class="line">    if(A.indexOf(B[i]) === -1)&#123;</span><br><span class="line">          return false;</span><br><span class="line">    &#125;else&#123;</span><br><span class="line">      A.splice(A.indexOf(B[i]),1);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  return true;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div></div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/image/wechat.jpg" alt="范二先生丶 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    范二先生丶
+  </li>
+  <li class="post-copyright-time">
+    <strong>发布时间:：</strong>
+    2019年08月15日 - 11:48
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://yoursite.com/2019/08/15/Authority_Assignment/" title="Vue引用iView Checkbox多选框实现权限分配">http://yoursite.com/2019/08/15/Authority_Assignment/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://gaoyuan1024.github.io/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Vue/" rel="tag"># Vue</a>
+          
+            <a href="/tags/iview/" rel="tag"># iview</a>
+          
+            <a href="/tags/Checkbox/" rel="tag"># Checkbox</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/08/08/kindEditor_Upload/" rel="next" title="kindEditor富文本上传图片请求头及携带token值">
+                <i class="fa fa-chevron-left"></i> kindEditor富文本上传图片请求头及携带token值
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/08/22/DragDrop_Layering/" rel="prev" title="Vue拖放分层列表之vue-nestable">
+                Vue拖放分层列表之vue-nestable <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div id="gitalk-container"></div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="范二先生丶">
+            
+              <p class="site-author-name" itemprop="name">范二先生丶</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">21</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">分类</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">21</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/Gaoyuan1024" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:396959534@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://plus.google.com/yourname" target="_blank" title="Google">
+                      
+                        <i class="fa fa-fw fa-google"></i>Google</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">范二先生丶</span>
+
+  
+</div>
+
+
+  <div class="theme-info">
+    <div class="powered-by"></div>
+    <span class="post-count">博客全站共27.2k字</span>
+  </div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+   <script type="text/javascript">
+        var gitalk = new Gitalk({
+          clientID: '9c8dfe2157a9c6ca738e',
+          clientSecret: '9e2f6e852ddec02088e9a80a4e2ad1b5a6802515',
+          repo: 'Gaoyuan1024.github.io',
+          owner: 'Gaoyuan1024',
+          admin: ['Gaoyuan1024'],
+          id: location.pathname,
+          distractionFreeMode: 'true'
+        })
+        gitalk.render('gitalk-container')           
+       </script>
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+
+  <!-- 代码块复制功能 -->
+  <script type="text/javascript" src="/js/src/clipboard.min.js"></script>  
+  <script type="text/javascript" src="/js/src/clipboard-use.js"></script>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false});</script></body>
+</html>
